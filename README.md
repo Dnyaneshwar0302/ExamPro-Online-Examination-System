@@ -1,194 +1,192 @@
-# ExamPro — AI-Powered Online Examination System
+<div align="center">
 
-> A full-stack intelligent examination platform with AI-powered question generation, secure online assessments, AI-based proctoring, coding examinations, automated code evaluation, and performance analytics.
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:667eea,50:764ba2,100:f093fb&height=220&section=header&text=ExamPro&fontSize=70&fontColor=ffffff&fontAlignY=38&desc=AI-Powered%20Online%20Examination%20System&descAlignY=58&descSize=20&animation=fadeIn" width="100%"/>
 
----
+<br>
 
-## 📸 Project Screenshots
+<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=667EEA&center=true&vCenter=true&width=750&lines=AI-Powered+Online+Examination+Platform;Intelligent+AI+Proctoring;Automated+Coding+Evaluation;Real-Time+Examination+Management;Performance+Analytics+%26+Leaderboards" alt="Typing Animation"/>
 
-### Landing Page
+<br><br>
 
-![ExamPro Landing Page](screenshots/landing-page.png)
+<img src="https://img.shields.io/badge/Project-ExamPro-667eea?style=for-the-badge&logo=googleclassroom&logoColor=white"/>
+<img src="https://img.shields.io/badge/AI-Powered-764ba2?style=for-the-badge&logo=artificialintelligence&logoColor=white"/>
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+<img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
+<img src="https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/>
 
-### Admin Login
+<br>
 
-![Admin Login](screenshots/admin-login.png)
+<img src="https://img.shields.io/badge/Java-17-orange?style=flat-square&logo=openjdk&logoColor=white"/>
+<img src="https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white"/>
+<img src="https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white"/>
+<img src="https://img.shields.io/badge/MediaPipe-00A98F?style=flat-square&logo=google&logoColor=white"/>
+<img src="https://img.shields.io/badge/YOLO11-111111?style=flat-square&logo=yolo&logoColor=white"/>
 
-### Admin Dashboard
+<br><br>
 
-![Admin Dashboard](screenshots/admin-dashboard.png)
+<p>
+  <b>🚀 A complete full-stack examination platform combining Web Development, Artificial Intelligence, Computer Vision and Automated Code Evaluation.</b>
+</p>
 
-### Student Dashboard
-
-![Student Dashboard](screenshots/student-dashboard.png)
-
-### My Examinations
-
-![My Examinations](screenshots/my-examinations.png)
-
-### Coding Examination & Result
-
-![Coding Examination Result](screenshots/coding-exam-result.png)
-
-### AI Proctoring
-
-![AI Proctoring](screenshots/ai-proctoring.png)
+</div>
 
 ---
 
-## 🎯 Project Overview
+# 📑 Table of Contents
 
-**ExamPro** is a full-stack AI-powered online examination system designed to provide a secure, intelligent, and interactive environment for conducting online assessments.
-
-The platform provides separate experiences for **Administrators** and **Students**.
-
-Administrators can create and manage examinations, generate questions using AI, manage students, maintain a question bank, and analyze examination results.
-
-Students can register, take examinations, solve programming problems, receive automated coding evaluation, view their performance, and download examination-related reports.
-
-The system also integrates **AI-based proctoring** to detect suspicious activities during examinations.
+- [🎯 About ExamPro](#-about-exampro)
+- [✨ Key Features](#-key-features)
+- [🏗️ System Architecture](#️-system-architecture)
+- [🔄 System Workflow](#-system-workflow)
+- [🤖 AI-Powered Features](#-ai-powered-features)
+- [💻 Coding Examination System](#-coding-examination-system)
+- [👨‍💼 Admin Module](#-admin-module)
+- [👨‍🎓 Student Module](#-student-module)
+- [📸 Screenshots](#-screenshots)
+- [🛠️ Technology Stack](#️-technology-stack)
+- [📁 Project Structure](#-project-structure)
+- [⚙️ Installation & Setup](#️-installation--setup)
+- [🔐 Security & Configuration](#-security--configuration)
+- [📊 Main Components](#-main-components)
+- [🚀 Future Enhancements](#-future-enhancements)
+- [🎓 Project Highlights](#-project-highlights)
+- [👨‍💻 Developer](#-developer)
 
 ---
 
-## ✨ Key Features
+# 🎯 About ExamPro
 
-### 👨‍💼 Admin Features
+**ExamPro** is a full-stack **AI-Powered Online Examination System** designed to provide a secure, intelligent and interactive environment for conducting online assessments.
 
-- Secure Admin Login
-- Admin Registration with Authorization Code
-- Admin Dashboard
-- Create and Manage Examinations
-- Add Multiple-Choice Questions
-- Add Coding Questions
-- AI-Powered Question Generation
-- Question Bank Management
-- Student Management
-- Examination Results
+The platform provides dedicated experiences for:
+
+- 👨‍💼 Administrators
+- 👨‍🎓 Students
+
+Administrators can create and manage examinations, generate questions using AI, manage students, maintain question banks and analyze examination results.
+
+Students can register, participate in examinations, solve MCQ and programming questions, receive automated coding evaluation and view their performance.
+
+The platform also includes an **AI-based proctoring system** that uses computer vision to detect suspicious activities during examinations.
+
+---
+
+# ✨ Key Features
+
+<table>
+<tr>
+<td width="50%">
+
+### 🤖 Artificial Intelligence
+
+- AI Question Generation
+- AI-Based Proctoring
+- Face Detection
+- Multiple Face Detection
+- Face Absence Detection
+- Electronic Device Detection
+- Automated Code Evaluation
+
+</td>
+
+<td width="50%">
+
+### 📝 Examination
+
+- MCQ Examinations
+- Coding Examinations
+- Online Timer
+- Automatic Evaluation
+- Test Case Execution
+- Marks Calculation
+- Result Generation
 - Leaderboard
-- Performance Analytics
+
+</td>
+</tr>
+
+<tr>
+<td>
+
+### 👨‍💼 Administration
+
+- Admin Authentication
 - Examination Management
+- Question Bank
+- Student Management
+- AI Question Generator
+- Results Management
+- Performance Analytics
 
----
+</td>
 
-### 👨‍🎓 Student Features
+<td>
+
+### 👨‍🎓 Student
 
 - Student Registration
 - Student Login
-- Personalized Student Dashboard
-- View Available Examinations
-- Start Online Examination
-- Multiple-Choice Questions
-- Coding Questions
-- Programming Language Selection
-- Starter / Boilerplate Code
-- Run Code
-- Submit Code
-- Automated Test Case Evaluation
-- Examination Timer
-- Examination Result
-- Performance Tracking
-- Profile and Account Management
+- Examination Dashboard
+- Online Examination
+- Coding Editor
+- Code Execution
+- Result Analysis
+- Profile Management
+
+</td>
+</tr>
+</table>
 
 ---
 
-## 🤖 AI-Powered Features
+# 🏗️ System Architecture
 
-### 1. AI Question Generation
-
-ExamPro can generate examination questions based on:
-
-- Topic
-- Question Type
-- Difficulty Level
-- Programming Language
-- Number of Questions
-
-Supported areas include:
-
-- Aptitude
-- Java
-- Python
-- SQL
-- JavaScript
-- HTML
-- CSS
-- Spring Boot
-- Programming / Coding
-
----
-
-### 2. AI-Based Proctoring
-
-The examination system uses computer vision techniques to monitor examination sessions.
-
-The AI proctoring system can detect suspicious situations such as:
-
-- Multiple faces
-- Face absence
-- Electronic devices
-- Suspicious examination activity
-
-The system uses:
-
-- MediaPipe
-- YOLO11
-- OpenCV
-- Python
-
----
-
-### 3. Automated Coding Evaluation
-
-The coding examination system allows students to solve programming problems directly inside the examination environment.
-
-Supported executable languages include:
-
-- Python
-- Java
-- C
-- C++
-- JavaScript
-
-The system:
-
-1. Provides a programming problem.
-2. Displays starter code.
-3. Allows the student to write code.
-4. Runs the submitted code.
-5. Executes test cases.
-6. Compares actual and expected output.
-7. Calculates marks.
-8. Displays passed and failed test cases.
-
----
-
-## 🏗️ System Architecture
+<div align="center">
 
 ```text
-                         ┌──────────────────────┐
-                         │      ExamPro         │
-                         │  Online Examination  │
-                         └──────────┬───────────┘
-                                    │
-                    ┌───────────────┼───────────────┐
-                    │               │               │
-                    ▼               ▼               ▼
-             ┌────────────┐  ┌────────────┐  ┌──────────────┐
-             │  React     │  │ Spring Boot│  │ Python AI    │
-             │ Frontend   │  │  Backend   │  │   Service    │
-             └─────┬──────┘  └─────┬──────┘  └──────┬───────┘
-                   │               │                │
-                   │               ▼                │
-                   │        ┌──────────────┐        │
-                   │        │    MySQL     │        │
-                   │        │   Database   │        │
-                   │        └──────────────┘        │
-                   │                                │
-                   │                                ▼
-                   │                       ┌─────────────────┐
-                   │                       │ AI Proctoring   │
-                   │                       │ & Code          │
-                   │                       │ Evaluation      │
-                   │                       └─────────────────┘
-                   │
-                   └──────────── API Communication ────────────
+                         ┌──────────────────────────────┐
+                         │          👨‍🎓 STUDENT          │
+                         │                              │
+                         │  Login / Register            │
+                         │  Take Examination            │
+                         │  Solve MCQ / Coding          │
+                         │  View Results                 │
+                         └──────────────┬───────────────┘
+                                        │
+                                        │ HTTP / REST API
+                                        ▼
+┌──────────────────────────────────────────────────────────────────────────┐
+│                         ⚛️ REACT FRONTEND                                │
+│                                                                          │
+│  Landing Page │ Authentication │ Dashboard │ Exam Room │ Code Editor    │
+│  Admin Panel   │ Question Bank │ Results   │ Analytics │ Leaderboard    │
+└──────────────────────────────┬───────────────────────────────────────────┘
+                               │
+                               │ REST APIs
+                               ▼
+┌──────────────────────────────────────────────────────────────────────────┐
+│                         ☕ SPRING BOOT BACKEND                           │
+│                                                                          │
+│  Authentication │ Exam Management │ Question Management                 │
+│  Student Management │ Result Processing │ Leaderboard                    │
+│  Coding Evaluation │ AI Service Communication                           │
+└───────────────┬──────────────────────────────┬───────────────────────────┘
+                │                              │
+                │                              │ HTTP
+                ▼                              ▼
+┌──────────────────────────────┐    ┌──────────────────────────────────────┐
+│        🗄️ MYSQL             │    │          🐍 PYTHON AI SERVICE         │
+│                              │    │                                      │
+│ Users                        │    │ AI Question Generation               │
+│ Exams                        │    │ AI Proctoring                        │
+│ Questions                    │    │ Face Detection                       │
+│ Results                      │    │ Device Detection                     │
+│ Cheating Logs                │    │ Code Evaluation                      │
+└──────────────────────────────┘    └───────────────┬──────────────────────┘
+                                                     │
+                              ┌──────────────────────┼──────────────────────┐
+                              │                      │                      │
+                              ▼                      ▼                      ▼
+                         OpenCV                MediaPipe                 YOLO11
+                         Computer Vision       Face Analysis            Object Detection
