@@ -1,0 +1,418 @@
+/* =========================================================
+   EXAMPRO GLOBAL THEME
+========================================================= */
+
+:root {
+  --theme-bg: #f5f5f5;
+  --theme-card: #ffffff;
+  --theme-card-secondary: #fafafa;
+  --theme-text: #111111;
+  --theme-text-secondary: #666666;
+  --theme-text-muted: #888888;
+  --theme-border: #dedede;
+  --theme-border-light: #eeeeee;
+  --theme-input: #fafafa;
+  --theme-hover: #f0f0f0;
+}
+
+/* =========================================================
+   DARK THEME VARIABLES
+========================================================= */
+
+[data-theme="dark"] {
+  --theme-bg: #101010;
+  --theme-card: #181818;
+  --theme-card-secondary: #202020;
+  --theme-text: #f5f5f5;
+  --theme-text-secondary: #b5b5b5;
+  --theme-text-muted: #858585;
+  --theme-border: #333333;
+  --theme-border-light: #292929;
+  --theme-input: #202020;
+  --theme-hover: #292929;
+}
+
+/* =========================================================
+   GENERAL
+========================================================= */
+
+[data-theme="dark"] body {
+  background: #101010;
+  color: #f5f5f5;
+}
+
+[data-theme="dark"] input,
+[data-theme="dark"] textarea,
+[data-theme="dark"] select {
+  color-scheme: dark;
+}
+
+/* =========================================================
+   ADMIN DASHBOARD
+========================================================= */
+
+[data-theme="dark"] .admin-layout {
+  background: #101010;
+  color: #f5f5f5;
+}
+
+[data-theme="dark"] .admin-main {
+  background: #101010;
+}
+
+[data-theme="dark"] .admin-header {
+  background: #151515;
+  border-color: #303030;
+  color: #f5f5f5;
+}
+
+[data-theme="dark"] .admin-header h1 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .header-small-text {
+  color: #888888;
+}
+
+[data-theme="dark"] .header-admin-info strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .header-admin-info span {
+  color: #888888;
+}
+
+/* Stats */
+
+[data-theme="dark"] .stat-card {
+  background: #181818;
+  border-color: #333333;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .stat-card:hover {
+  border-color: #555555;
+}
+
+[data-theme="dark"] .stat-title {
+  color: #999999;
+}
+
+[data-theme="dark"] .stat-icon {
+  background: #292929;
+  color: #ffffff;
+}
+
+/* Quick actions */
+
+[data-theme="dark"] .quick-card {
+  background: #181818;
+  border-color: #333333;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .quick-card:hover {
+  border-color: #555555;
+}
+
+[data-theme="dark"] .quick-icon {
+  background: #292929;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .quick-card strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .quick-card p {
+  color: #888888;
+}
+
+[data-theme="dark"] .quick-arrow {
+  color: #aaaaaa;
+}
+
+/* Sections */
+
+[data-theme="dark"] .section-heading h2 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .section-heading p {
+  color: #888888;
+}
+
+[data-theme="dark"] .section-heading > div > span {
+  color: #888888;
+}
+
+[data-theme="dark"] .question-counter {
+  background: #181818;
+  border-color: #333333;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .question-counter span {
+  color: #888888;
+}
+
+/* Form */
+
+[data-theme="dark"] .form-card {
+  background: #181818;
+  border-color: #333333;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .form-card-header {
+  border-color: #303030;
+}
+
+[data-theme="dark"] .form-card-header h3 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .form-card-header p {
+  color: #888888;
+}
+
+[data-theme="dark"] .input-group label {
+  color: #aaaaaa;
+}
+
+[data-theme="dark"] .input-group input,
+[data-theme="dark"] .input-group textarea,
+[data-theme="dark"] .input-group select {
+  background: #202020;
+  border-color: #383838;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .input-group input:focus,
+[data-theme="dark"] .input-group textarea:focus,
+[data-theme="dark"] .input-group select:focus {
+  background: #242424;
+  border-color: #ffffff;
+  box-shadow: 0 0 0 2px #333333;
+}
+
+[data-theme="dark"] .input-group input::placeholder,
+[data-theme="dark"] .input-group textarea::placeholder {
+  color: #666666;
+}
+
+/* Proctoring */
+
+[data-theme="dark"] .proctoring-row {
+  background: #202020;
+  border-color: #383838;
+}
+
+[data-theme="dark"] .proctoring-content strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .proctoring-content p {
+  color: #888888;
+}
+
+/* Question builder */
+
+[data-theme="dark"] .question-builder {
+  background: #141414;
+  border-color: #333333;
+}
+
+[data-theme="dark"] .builder-header strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .builder-header span {
+  color: #777777;
+}
+
+[data-theme="dark"] .options-title {
+  color: #aaaaaa;
+}
+
+[data-theme="dark"] .option-input input {
+  background: #202020;
+  border-color: #383838;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .option-input input:focus {
+  border-color: #ffffff;
+}
+
+/* Added questions */
+
+[data-theme="dark"] .added-questions {
+  border-color: #303030;
+}
+
+[data-theme="dark"] .added-heading strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .added-heading span {
+  color: #888888;
+}
+
+[data-theme="dark"] .added-question {
+  background: #202020;
+  border-color: #383838;
+}
+
+[data-theme="dark"] .added-question-content strong {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .question-meta {
+  color: #888888;
+}
+
+[data-theme="dark"] .remove-question-btn {
+  background: #181818;
+  border-color: #444444;
+  color: #cccccc;
+}
+
+[data-theme="dark"] .remove-question-btn:hover {
+  background: #ffffff;
+  color: #000000;
+}
+
+/* Exam list */
+
+[data-theme="dark"] .exam-count-badge {
+  background: #181818;
+  border-color: #383838;
+  color: #cccccc;
+}
+
+[data-theme="dark"] .admin-exam-card {
+  background: #181818;
+  border-color: #333333;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .admin-exam-main h3 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .admin-exam-main p {
+  color: #888888;
+}
+
+[data-theme="dark"] .admin-exam-meta {
+  color: #999999;
+}
+
+[data-theme="dark"] .empty-exams {
+  background: #181818;
+  border-color: #333333;
+}
+
+[data-theme="dark"] .empty-icon {
+  background: #292929;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .empty-exams h3 {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .empty-exams p {
+  color: #888888;
+}
+
+/* Footer */
+
+[data-theme="dark"] .admin-footer {
+  border-color: #303030;
+  color: #777777;
+}
+
+/* =========================================================
+   STUDENT DASHBOARD — GENERIC DARK OVERRIDES
+========================================================= */
+
+/*
+   These selectors intentionally cover common dashboard
+   card/navigation names so the existing Student Dashboard
+   can use the same global theme.
+*/
+
+[data-theme="dark"] .dashboard {
+  background: #101010 !important;
+  color: #f5f5f5 !important;
+}
+
+[data-theme="dark"] .dashboard-content {
+  background: #101010 !important;
+  color: #f5f5f5 !important;
+}
+
+[data-theme="dark"] .navbar {
+  background: #151515 !important;
+  border-color: #303030 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .navbar h1,
+[data-theme="dark"] .navbar h2,
+[data-theme="dark"] .navbar h3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .card,
+[data-theme="dark"] .exam-card,
+[data-theme="dark"] .stat-card,
+[data-theme="dark"] .quick-action,
+[data-theme="dark"] .quick-card,
+[data-theme="dark"] .profile-card,
+[data-theme="dark"] .result-card {
+  background: #181818 !important;
+  border-color: #333333 !important;
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .card h1,
+[data-theme="dark"] .card h2,
+[data-theme="dark"] .card h3,
+[data-theme="dark"] .exam-card h1,
+[data-theme="dark"] .exam-card h2,
+[data-theme="dark"] .exam-card h3 {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .card p,
+[data-theme="dark"] .exam-card p {
+  color: #999999 !important;
+}
+
+/* =========================================================
+   SMOOTH THEME TRANSITION
+========================================================= */
+
+body,
+.admin-layout,
+.admin-main,
+.admin-header,
+.stat-card,
+.quick-card,
+.form-card,
+.question-builder,
+.admin-exam-card,
+.empty-exams,
+.dashboard,
+.dashboard-content,
+.navbar,
+.card,
+.exam-card {
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease,
+    border-color 0.25s ease;
+}

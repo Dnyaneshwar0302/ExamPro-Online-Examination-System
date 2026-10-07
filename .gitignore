@@ -1,0 +1,65 @@
+# =========================
+# React / Node
+# =========================
+node_modules/
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+
+# =========================
+# Python
+# =========================
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# =========================
+# Java / Spring Boot
+# =========================
+backend/target/
+*.class
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+!.env.example
+
+# =========================
+# IDE
+# =========================
+.vscode/
+.idea/
+.classpath
+.project
+.settings/
+
+# =========================
+# Eclipse / Maven
+# =========================
+backend/.classpath
+backend/.project
+backend/.settings/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =========================
+# Logs
+# =========================
+*.log
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.temp
