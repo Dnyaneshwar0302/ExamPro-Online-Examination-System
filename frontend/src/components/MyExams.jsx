@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
@@ -15,14 +15,10 @@ function MyExams() {
   const [sortBy, setSortBy] = useState('NEWEST');
   const [selectedExam, setSelectedExam] = useState(null);
 
-  useEffect(() => {
-    fetchExams();
-  }, []);
-
   // ------------------------------------------------------------
   // EXISTING DATA FETCHING - UNCHANGED
   // ------------------------------------------------------------
-  const fetchExams = async () => {
+  const fetchExams = useCallback(async () => {
     try {
       setLoading(true);
       setError('');
@@ -60,7 +56,11 @@ function MyExams() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [navigate]);
+
+  useEffect(() => {
+    fetchExams();
+  }, [fetchExams]);
 
   // ------------------------------------------------------------
   // EXISTING STATUS LOGIC - UNCHANGED

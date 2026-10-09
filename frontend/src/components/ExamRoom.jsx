@@ -2,7 +2,15 @@ import React, {
 
 
 
+
+
+
+
   useState,
+
+
+
+
 
 
 
@@ -10,7 +18,15 @@ import React, {
 
 
 
+
+
+
+
   useRef,
+
+
+
+
 
 
 
@@ -18,7 +34,15 @@ import React, {
 
 
 
+
+
+
+
 } from 'react';
+
+
+
+
 
 
 
@@ -26,7 +50,15 @@ import {
 
 
 
+
+
+
+
   useParams,
+
+
+
+
 
 
 
@@ -34,7 +66,15 @@ import {
 
 
 
+
+
+
+
 } from 'react-router-dom';
+
+
+
+
 
 
 
@@ -42,7 +82,15 @@ import axios from 'axios';
 
 
 
+
+
+
+
 import CodeEditor from './CodeEditor';
+
+
+
+
 
 
 
@@ -50,7 +98,15 @@ const BACKEND_URL = 'http://localhost:8080';
 
 
 
+
+
+
+
 const AI_SERVICE_URL =
+
+
+
+
 
 
 
@@ -58,7 +114,15 @@ const AI_SERVICE_URL =
 
 
 
+
+
+
+
 function ExamRoom() {
+
+
+
+
 
 
 
@@ -66,11 +130,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const navigate = useNavigate();
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -78,7 +154,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -86,7 +170,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const [questions, setQuestions] = useState([]);
+
+
+
+
 
 
 
@@ -94,9 +186,21 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const [answers, setAnswers] = useState({});
 
-  const [codingLanguages, setCodingLanguages] = useState({});
+  const [, setCodingLanguages] = useState({});
+
+
+
+  
+
+
+
+
 
 
 
@@ -104,7 +208,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const [warnings, setWarnings] = useState(0);
+
+
+
+
 
 
 
@@ -112,7 +224,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const [cameraStatus, setCameraStatus] =
+
+
+
+
 
 
 
@@ -120,7 +240,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const [lastDetection, setLastDetection] =
+
+
+
+
 
 
 
@@ -128,7 +256,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const [showCamera, setShowCamera] =
+
+
+
+
 
 
 
@@ -136,23 +272,47 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
 
   // TAB-SWITCH MONITORING
 
+
+
   // ============================================================
+
+
+
+
 
 
 
   const [tabSwitchActive, setTabSwitchActive] = useState(false);
 
+
+
   const [tabSwitchSeconds, setTabSwitchSeconds] = useState(30);
 
-  const [tabSwitchCount, setTabSwitchCount] = useState(0);
+
+
+  const [, setTabSwitchCount] = useState(0);
+
+
+
+
 
 
 
   // ============================================================
+
+
+
+
 
 
 
@@ -160,7 +320,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -168,7 +336,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const streamRef = useRef(null);
+
+
+
+
 
 
 
@@ -176,7 +352,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const detectingRef = useRef(false);
+
+
+
+
 
 
 
@@ -184,13 +368,27 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const warningsRef = useRef(0);
+
+
+
+
 
 
 
   const answersRef = useRef({});
 
+
+
   const codingLanguagesRef = useRef({});
+
+
+
+
 
 
 
@@ -198,21 +396,43 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const examRef = useRef(null);
+
+
+
+
 
 
 
   const tabSwitchIntervalRef = useRef(null);
 
+
+
   const tabSwitchDeadlineRef = useRef(null);
 
+
+
   const tabSwitchActiveRef = useRef(false);
+
+
 
   const tabSwitchCountRef = useRef(0);
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -220,7 +440,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -228,7 +456,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     try {
+
+
+
+
 
 
 
@@ -236,7 +472,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         localStorage.getItem('token');
+
+
+
+
 
 
 
@@ -244,7 +488,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         `${BACKEND_URL}/api/student/exams/${examId}/questions`,
+
+
+
+
 
 
 
@@ -252,7 +504,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           headers: {
+
+
+
+
 
 
 
@@ -260,7 +520,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               `Bearer ${token}`
+
+
+
+
 
 
 
@@ -268,11 +536,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         }
 
 
 
+
+
+
+
       );
+
+
+
+
 
 
 
@@ -280,7 +560,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       const examInformation = {
+
+
+
+
 
 
 
@@ -288,7 +576,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         title: 'Exam'
+
+
+
+
 
 
 
@@ -296,7 +592,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       setExam(examInformation);
+
+
+
+
 
 
 
@@ -304,7 +608,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         examInformation;
+
+
+
+
 
 
 
@@ -312,7 +624,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       console.error(
+
+
+
+
 
 
 
@@ -320,11 +640,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         error
 
 
 
+
+
+
+
       );
+
+
+
+
 
 
 
@@ -332,11 +664,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         'Failed to load exam'
 
 
 
+
+
+
+
       );
+
+
+
+
 
 
 
@@ -344,7 +688,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         '/student/dashboard'
+
+
+
+
 
 
 
@@ -352,7 +704,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     }
+
+
+
+
 
 
 
@@ -360,7 +720,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     examId,
+
+
+
+
 
 
 
@@ -368,11 +736,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
   ]);
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -380,7 +760,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -388,7 +776,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     console.log(
+
+
+
+
 
 
 
@@ -396,7 +792,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     );
+
+
+
+
 
 
 
@@ -404,7 +808,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     if (
+
+
+
+
 
 
 
@@ -412,7 +824,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     ) {
+
+
+
+
 
 
 
@@ -420,7 +840,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         cheatingIntervalRef.current
+
+
+
+
 
 
 
@@ -428,7 +856,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       cheatingIntervalRef.current =
+
+
+
+
 
 
 
@@ -436,7 +872,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     }
+
+
+
+
 
 
 
@@ -444,11 +888,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
     if (
 
 
 
+
+
+
+
       streamRef.current
+
+
+
+
 
 
 
@@ -456,7 +912,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       streamRef.current
+
+
+
+
 
 
 
@@ -464,7 +928,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         .forEach((track) => {
+
+
+
+
 
 
 
@@ -472,7 +944,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         });
+
+
+
+
 
 
 
@@ -480,11 +960,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         null;
 
 
 
+
+
+
+
     }
+
+
+
+
 
 
 
@@ -492,7 +984,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     if (
+
+
+
+
 
 
 
@@ -500,7 +1000,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     ) {
+
+
+
+
 
 
 
@@ -508,29 +1016,61 @@ function ExamRoom() {
 
 
 
+
+
+
+
         null;
 
 
 
+
+
+
+
     }
+
+
 
     if (tabSwitchIntervalRef.current) {
 
+
+
       clearInterval(tabSwitchIntervalRef.current);
+
+
 
       tabSwitchIntervalRef.current = null;
 
+
+
     }
+
+
+
+
 
 
 
     tabSwitchDeadlineRef.current = null;
 
+
+
     tabSwitchActiveRef.current = false;
+
+
 
     setTabSwitchActive(false);
 
+
+
     setTabSwitchSeconds(30);
+
+
+
+
+
+
 
 
 
@@ -540,7 +1080,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       'Camera stopped'
+
+
+
+
 
 
 
@@ -548,11 +1096,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
   }, []);
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -560,7 +1120,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -568,11 +1136,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
     async (warningCount) => {
 
 
 
+
+
+
+
       if (
+
+
+
+
 
 
 
@@ -580,7 +1160,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       ) {
+
+
+
+
 
 
 
@@ -588,7 +1176,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       }
+
+
+
+
 
 
 
@@ -596,7 +1192,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         true;
+
+
+
+
 
 
 
@@ -604,11 +1208,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
       // Stop AI monitoring
 
 
 
+
+
+
+
       if (
+
+
+
+
 
 
 
@@ -616,7 +1232,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       ) {
+
+
+
+
 
 
 
@@ -624,7 +1248,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           cheatingIntervalRef.current
+
+
+
+
 
 
 
@@ -632,7 +1264,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         cheatingIntervalRef.current =
+
+
+
+
 
 
 
@@ -640,11 +1280,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
       }
 
 
 
+
+
+
+
       try {
+
+
+
+
 
 
 
@@ -652,7 +1304,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           localStorage.getItem('token');
+
+
+
+
 
 
 
@@ -660,7 +1320,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           examRef.current;
+
+
+
+
 
 
 
@@ -668,7 +1336,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           timeLeftRef.current;
+
+
+
+
 
 
 
@@ -676,7 +1352,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           answersRef.current;
+
+
+
+
 
 
 
@@ -684,7 +1368,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           warningCount !== undefined
+
+
+
+
 
 
 
@@ -692,7 +1384,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             : warningsRef.current;
+
+
+
+
 
 
 
@@ -700,7 +1400,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           (
+
+
+
+
 
 
 
@@ -708,7 +1416,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             60
+
+
+
+
 
 
 
@@ -716,7 +1432,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         const timeSpent =
+
+
+
+
 
 
 
@@ -724,7 +1448,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             0,
+
+
+
+
 
 
 
@@ -732,11 +1464,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           );
 
 
 
+
+
+
+
         console.log(
+
+
+
+
 
 
 
@@ -744,7 +1488,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -752,11 +1504,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           `${BACKEND_URL}/api/student/exams/${examId}/submit`,
 
 
 
+
+
+
+
           {
+
+
+
+
 
 
 
@@ -764,15 +1528,31 @@ function ExamRoom() {
 
 
 
+
+
+
+
               currentAnswers,
+
+
+
+
 
 
 
             codingLanguages:
 
+
+
               codingLanguagesRef.current,
 
+
+
             cheatingAttempts:
+
+
+
+
 
 
 
@@ -780,7 +1560,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             timeTakenSeconds:
+
+
+
+
 
 
 
@@ -788,7 +1576,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           },
+
+
+
+
 
 
 
@@ -796,7 +1592,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             headers: {
+
+
+
+
 
 
 
@@ -804,7 +1608,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 `Bearer ${token}`
+
+
+
+
 
 
 
@@ -812,11 +1624,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           }
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -824,7 +1648,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         alert(
+
+
+
+
 
 
 
@@ -832,7 +1664,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -840,7 +1680,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           '/analytics'
+
+
+
+
 
 
 
@@ -848,11 +1696,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
       } catch (error) {
 
 
 
+
+
+
+
         console.error(
+
+
+
+
 
 
 
@@ -860,11 +1720,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           error
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -872,11 +1744,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           'Failed to submit exam'
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -884,7 +1768,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           false;
+
+
+
+
 
 
 
@@ -892,7 +1784,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       }
+
+
+
+
 
 
 
@@ -900,11 +1800,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
     [
 
 
 
+
+
+
+
       examId,
+
+
+
+
 
 
 
@@ -912,7 +1824,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       stopWebcam
+
+
+
+
 
 
 
@@ -920,7 +1840,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   );
+
+
+
+
 
 
 
@@ -928,25 +1856,51 @@ function ExamRoom() {
 
 
 
+
+
+
+
   const handleCodingLanguageChange = (questionId, language) => {
+
+
 
     setCodingLanguages((previous) => {
 
+
+
       const updated = {
+
+
 
         ...previous,
 
+
+
         [questionId]: language
+
+
 
       };
 
+
+
       codingLanguagesRef.current = updated;
+
+
 
       return updated;
 
+
+
     });
 
+
+
   };
+
+
+
+
 
 
 
@@ -954,191 +1908,383 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
 
 
 
+
+
+
+
   const detectCheating =
+
     useCallback(async () => {
 
+
+
       if (detectingRef.current || submittedRef.current) {
+
         return;
+
       }
+
+
 
       const video = videoRef.current;
 
+
+
       if (
+
         !video ||
+
         video.readyState < 2 ||
+
         !video.videoWidth ||
+
         !video.videoHeight
+
       ) {
+
         return;
+
       }
+
+
 
       detectingRef.current = true;
 
+
+
       try {
+
         const canvas = document.createElement('canvas');
+
         canvas.width = video.videoWidth;
+
         canvas.height = video.videoHeight;
+
+
 
         const context = canvas.getContext('2d');
 
+
+
         if (!context) {
+
           return;
+
         }
 
+
+
         // Send the original camera frame to the AI service.
+
         // The visible preview can remain mirrored.
+
         context.drawImage(
+
           video,
+
           0,
+
           0,
+
           canvas.width,
+
           canvas.height
+
         );
 
+
+
         const frameData = canvas.toDataURL(
+
           'image/jpeg',
+
           0.65
+
         );
+
+
 
         const userId = localStorage.getItem('userId');
 
+
+
         console.log(
+
           '[AI Proctoring] Sending frame to AI...'
+
         );
 
+
+
         const response = await axios.post(
+
           AI_SERVICE_URL,
+
           {
+
             frame: frameData,
+
             examId: examId,
+
             userId: userId
+
           },
+
           {
+
             headers: {
+
               'Content-Type': 'application/json'
+
             },
+
             timeout: 15000
+
           }
+
         );
+
+
 
         const result = response.data || {};
 
+
+
         console.log(
+
           '[AI Proctoring] Result:',
+
           result
+
         );
 
+
+
         const violationType =
+
           result.violationType || 'UNKNOWN';
 
+
+
         const message =
+
           result.message ||
+
           'Suspicious activity detected';
 
+
+
         const confidence =
+
           Number(result.confidence || 0);
+
+
 
         if (result.cheatingDetected === true) {
 
+
+
           const nextWarnings =
+
             warningsRef.current + 1;
 
+
+
           warningsRef.current = nextWarnings;
+
           setWarnings(nextWarnings);
 
+
+
           setLastDetection(
+
             `⚠️ ${message}`
+
           );
+
+
 
           let warningTitle =
+
             'AI Proctoring Warning';
 
+
+
           if (violationType === 'MULTIPLE_FACES') {
+
             warningTitle = 'Multiple Faces Detected';
+
           } else if (violationType === 'FACE_ABSENT') {
+
             warningTitle = 'Face Not Detected';
+
           } else if (violationType === 'ELECTRONIC_DEVICE') {
+
             warningTitle = 'Electronic Device Detected';
+
           }
+
+
 
           console.warn(
+
             `[AI Proctoring] ${warningTitle} - ` +
+
             `Warning ${nextWarnings}/3 - ` +
+
             `Confidence: ${confidence.toFixed(2)}`
+
           );
 
+
+
           if (nextWarnings < 3) {
+
             alert(
+
               `${warningTitle}\n\n` +
+
               `${message}\n\n` +
+
               `Warning ${nextWarnings} of 3.\n` +
+
               `Please correct the issue immediately.`
+
             );
+
           }
+
+
 
           if (nextWarnings >= 3) {
+
             alert(
+
               'Exam terminated by AI Proctoring.\n\n' +
+
               'Three proctoring violations were detected.\n' +
+
               'Your exam will now be submitted.'
+
             );
 
+
+
             await handleSubmit(nextWarnings);
+
           }
+
+
 
         } else {
 
+
+
           if (violationType === 'NORMAL') {
+
             setLastDetection(
+
               '✓ AI monitoring active — no suspicious activity detected'
+
             );
+
           } else if (
+
             violationType === 'TEMPORARY_FACE_LOSS'
+
           ) {
+
             setLastDetection(
+
               'Face temporarily not detected — monitoring continues'
+
             );
+
           } else if (
+
             violationType === 'BLURRY_FRAME'
+
           ) {
+
             setLastDetection(
+
               'Camera frame temporarily blurry — monitoring continues'
+
             );
+
           } else {
+
             setLastDetection(message);
+
           }
+
         }
+
+
 
       } catch (error) {
 
+
+
         console.error(
+
           '[AI Proctoring] Detection error:',
+
           error
+
         );
+
+
 
         // AI/network failures are never counted as cheating.
+
         setLastDetection(
+
           'AI monitoring temporarily unavailable'
+
         );
 
+
+
       } finally {
+
         detectingRef.current = false;
+
       }
 
+
+
     }, [
+
       examId,
+
       handleSubmit
+
     ]);
+
+
 
 // START WEBCAM
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -1146,7 +2292,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     useCallback(async () => {
+
+
+
+
 
 
 
@@ -1154,7 +2308,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
        * Don't open a second camera stream
+
+
+
+
 
 
 
@@ -1162,7 +2324,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
        */
+
+
+
+
 
 
 
@@ -1170,7 +2340,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         streamRef.current
+
+
+
+
 
 
 
@@ -1178,7 +2356,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         console.log(
+
+
+
+
 
 
 
@@ -1186,7 +2372,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -1194,7 +2388,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       }
+
+
+
+
 
 
 
@@ -1202,7 +2404,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         console.log(
+
+
+
+
 
 
 
@@ -1210,7 +2420,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -1218,7 +2436,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         if (
+
+
+
+
 
 
 
@@ -1226,11 +2452,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           !navigator.mediaDevices.getUserMedia
 
 
 
+
+
+
+
         ) {
+
+
+
+
 
 
 
@@ -1238,7 +2476,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             'Camera API unavailable'
+
+
+
+
 
 
 
@@ -1246,7 +2492,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           alert(
+
+
+
+
 
 
 
@@ -1254,7 +2508,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           );
+
+
+
+
 
 
 
@@ -1262,11 +2524,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         }
 
 
 
+
+
+
+
         // ======================================================
+
+
+
+
 
 
 
@@ -1274,7 +2548,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         // ======================================================
+
+
+
+
 
 
 
@@ -1282,7 +2564,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           await navigator.mediaDevices.getUserMedia({
+
+
+
+
 
 
 
@@ -1290,7 +2580,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               facingMode:
+
+
+
+
 
 
 
@@ -1298,11 +2596,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               width: {
 
 
 
+
+
+
+
                 ideal:
+
+
+
+
 
 
 
@@ -1310,7 +2620,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               },
+
+
+
+
 
 
 
@@ -1318,7 +2636,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 ideal:
+
+
+
+
 
 
 
@@ -1326,11 +2652,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               }
 
 
 
+
+
+
+
             },
+
+
+
+
 
 
 
@@ -1338,7 +2676,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               false
+
+
+
+
 
 
 
@@ -1346,7 +2692,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         console.log(
+
+
+
+
 
 
 
@@ -1354,7 +2708,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -1362,7 +2724,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           stream;
+
+
+
+
 
 
 
@@ -1370,7 +2740,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         if (
+
+
+
+
 
 
 
@@ -1378,7 +2756,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         ) {
+
+
+
+
 
 
 
@@ -1386,7 +2772,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             stream;
+
+
+
+
 
 
 
@@ -1394,7 +2788,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             await videoRef.current.play();
+
+
+
+
 
 
 
@@ -1402,7 +2804,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             console.warn(
+
+
+
+
 
 
 
@@ -1410,7 +2820,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               playError
+
+
+
+
 
 
 
@@ -1418,7 +2836,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           }
+
+
+
+
 
 
 
@@ -1426,7 +2852,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         setCameraStatus(
+
+
+
+
 
 
 
@@ -1434,11 +2868,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         );
 
 
 
+
+
+
+
         // ======================================================
+
+
+
+
 
 
 
@@ -1446,11 +2892,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         // ======================================================
 
 
 
+
+
+
+
         if (
+
+
+
+
 
 
 
@@ -1458,7 +2916,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         ) {
+
+
+
+
 
 
 
@@ -1466,7 +2932,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             cheatingIntervalRef.current
+
+
+
+
 
 
 
@@ -1474,11 +2948,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         }
 
 
 
+
+
+
+
         /*
+
+
+
+
 
 
 
@@ -1486,7 +2972,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
          */
+
+
+
+
 
 
 
@@ -1494,7 +2988,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           setInterval(
+
+
+
+
 
 
 
@@ -1502,7 +3004,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               detectCheating();
+
+
+
+
 
 
 
@@ -1510,7 +3020,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             5000
+
+
+
+
 
 
 
@@ -1518,7 +3036,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         /*
+
+
+
+
 
 
 
@@ -1526,11 +3052,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
          * has had time to start.
 
 
 
+
+
+
+
          */
+
+
+
+
 
 
 
@@ -1538,7 +3076,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           if (
+
+
+
+
 
 
 
@@ -1546,7 +3092,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           ) {
+
+
+
+
 
 
 
@@ -1554,7 +3108,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           }
+
+
+
+
 
 
 
@@ -1562,7 +3124,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       } catch (error) {
+
+
+
+
 
 
 
@@ -1570,7 +3140,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           'Webcam error:',
+
+
+
+
 
 
 
@@ -1578,7 +3156,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -1586,11 +3172,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           'Camera access denied'
 
 
 
+
+
+
+
         );
+
+
+
+
 
 
 
@@ -1598,7 +3196,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           error.name ===
+
+
+
+
 
 
 
@@ -1606,11 +3212,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         ) {
 
 
 
+
+
+
+
           alert(
+
+
+
+
 
 
 
@@ -1618,7 +3236,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           );
+
+
+
+
 
 
 
@@ -1626,7 +3252,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           error.name ===
+
+
+
+
 
 
 
@@ -1634,11 +3268,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         ) {
 
 
 
+
+
+
+
           alert(
+
+
+
+
 
 
 
@@ -1646,7 +3292,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           );
+
+
+
+
 
 
 
@@ -1654,7 +3308,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           alert(
+
+
+
+
 
 
 
@@ -1662,7 +3324,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           );
+
+
+
+
 
 
 
@@ -1670,7 +3340,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       }
+
+
+
+
 
 
 
@@ -1678,7 +3356,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       detectCheating
+
+
+
+
 
 
 
@@ -1686,7 +3372,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -1694,11 +3388,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
 
 
 
+
+
+
+
   useEffect(() => {
+
+
+
+
 
 
 
@@ -1706,7 +3412,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       true;
+
+
+
+
 
 
 
@@ -1714,7 +3428,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       async () => {
+
+
+
+
 
 
 
@@ -1722,7 +3444,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         /*
+
+
+
+
 
 
 
@@ -1730,7 +3460,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
          * this component is still mounted.
+
+
+
+
 
 
 
@@ -1738,7 +3476,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         if (isMounted) {
+
+
+
+
 
 
 
@@ -1746,11 +3492,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         }
 
 
 
+
+
+
+
       };
+
+
+
+
 
 
 
@@ -1758,7 +3516,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     return () => {
+
+
+
+
 
 
 
@@ -1766,7 +3532,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         false;
+
+
+
+
 
 
 
@@ -1774,7 +3548,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     };
+
+
+
+
 
 
 
@@ -1782,7 +3564,39 @@ function ExamRoom() {
 
 
 
-    examId
+
+
+
+
+    examId,
+
+
+
+
+
+
+
+    fetchExamDetails,
+
+
+
+
+
+
+
+    startWebcam,
+
+
+
+
+
+
+
+    stopWebcam
+
+
+
+
 
 
 
@@ -1790,65 +3604,131 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
 
   // TAB-SWITCH MONITORING
 
+
+
   // ============================================================
+
+
+
+
 
 
 
   useEffect(() => {
 
+
+
     const clearTabSwitchTimer = () => {
+
+
 
       if (tabSwitchIntervalRef.current) {
 
+
+
         clearInterval(tabSwitchIntervalRef.current);
+
+
 
         tabSwitchIntervalRef.current = null;
 
+
+
       }
+
+
 
     };
 
 
 
+
+
+
+
     const handleTabVisibility = () => {
+
+
 
       if (submittedRef.current) {
 
+
+
         return;
+
+
 
       }
 
 
 
+
+
+
+
       // Leaving the exam tab starts a 30-second grace period.
+
+
 
       if (document.hidden) {
 
+
+
         if (tabSwitchActiveRef.current) {
 
+
+
           return;
+
+
 
         }
 
 
 
+
+
+
+
         tabSwitchActiveRef.current = true;
+
+
 
         tabSwitchDeadlineRef.current = Date.now() + 30000;
 
+
+
         setTabSwitchActive(true);
+
+
 
         setTabSwitchSeconds(30);
 
+
+
         setLastDetection(
+
+
 
           'Exam tab switched. Return within 30 seconds.'
 
+
+
         );
+
+
+
+
 
 
 
@@ -1856,31 +3736,63 @@ function ExamRoom() {
 
 
 
+
+
+
+
         tabSwitchIntervalRef.current = setInterval(() => {
+
+
 
           if (submittedRef.current) {
 
+
+
             clearTabSwitchTimer();
 
+
+
             return;
+
+
 
           }
 
 
 
+
+
+
+
           const remainingMs =
+
+
 
             (tabSwitchDeadlineRef.current || Date.now()) - Date.now();
 
 
 
+
+
+
+
           const remainingSeconds = Math.max(
+
+
 
             0,
 
+
+
             Math.ceil(remainingMs / 1000)
 
+
+
           );
+
+
+
+
 
 
 
@@ -1888,79 +3800,159 @@ function ExamRoom() {
 
 
 
+
+
+
+
           if (remainingMs <= 0) {
+
+
 
             clearTabSwitchTimer();
 
+
+
             tabSwitchActiveRef.current = false;
 
+
+
             tabSwitchDeadlineRef.current = null;
+
+
 
             setTabSwitchActive(false);
 
 
 
+
+
+
+
             if (!submittedRef.current) {
+
+
 
               setLastDetection(
 
+
+
                 '30-second tab-switch limit exceeded. Submitting exam.'
+
+
 
               );
 
+
+
               handleSubmit(warningsRef.current);
+
+
 
             }
 
+
+
           }
+
+
 
         }, 250);
 
 
 
+
+
+
+
         return;
 
+
+
       }
+
+
+
+
 
 
 
       // Returning before 30 seconds closes the warning.
 
+
+
       if (tabSwitchActiveRef.current) {
 
+
+
         const remainingMs =
+
+
 
           (tabSwitchDeadlineRef.current || Date.now()) - Date.now();
 
 
 
+
+
+
+
         // Keep the warning visible after the student returns so the
+
+
 
         // student explicitly acknowledges the tab switch.
 
+
+
         if (remainingMs <= 0) {
 
+
+
           return;
+
+
 
         }
 
 
 
+
+
+
+
         setTabSwitchSeconds(
+
+
 
           Math.max(1, Math.ceil(remainingMs / 1000))
 
+
+
         );
+
+
 
         setLastDetection(
 
+
+
           'Tab switch detected. Please acknowledge the warning.'
+
+
 
         );
 
+
+
       }
 
+
+
     };
+
+
+
+
 
 
 
@@ -1968,23 +3960,45 @@ function ExamRoom() {
 
 
 
+
+
+
+
     return () => {
+
+
 
       document.removeEventListener(
 
+
+
         'visibilitychange',
+
+
 
         handleTabVisibility
 
+
+
       );
+
+
 
       clearTabSwitchTimer();
 
+
+
       tabSwitchDeadlineRef.current = null;
+
+
 
       tabSwitchActiveRef.current = false;
 
+
+
     };
+
+
 
   }, [handleSubmit]);
 
@@ -1992,89 +4006,181 @@ function ExamRoom() {
 
 
 
+
+
+
+
+
+
   // ============================================================
+
+
 
   // EXAM TIMER
 
+
+
   // ============================================================
 
 
 
+
+
+
+
   // ============================================================
+
+
 
   // TAB-SWITCH WARNING ACKNOWLEDGEMENT
 
+
+
   // ============================================================
+
+
+
+
 
 
 
   const acknowledgeTabSwitch = useCallback(() => {
 
+
+
     if (!tabSwitchActiveRef.current) {
+
+
 
       return;
 
+
+
     }
+
+
+
+
 
 
 
     const remainingMs =
 
+
+
       (tabSwitchDeadlineRef.current || Date.now()) - Date.now();
+
+
+
+
 
 
 
     if (remainingMs <= 0) {
 
+
+
       return;
 
+
+
     }
+
+
+
+
 
 
 
     if (tabSwitchIntervalRef.current) {
 
+
+
       clearInterval(tabSwitchIntervalRef.current);
 
+
+
       tabSwitchIntervalRef.current = null;
+
+
 
     }
 
 
 
+
+
+
+
     tabSwitchActiveRef.current = false;
+
+
 
     tabSwitchDeadlineRef.current = null;
 
+
+
     setTabSwitchActive(false);
+
+
 
     setTabSwitchSeconds(30);
 
 
 
+
+
+
+
     const nextCount = tabSwitchCountRef.current + 1;
 
+
+
     tabSwitchCountRef.current = nextCount;
+
+
 
     setTabSwitchCount(nextCount);
 
 
 
+
+
+
+
     setLastDetection(
+
+
 
       `Tab switch warning acknowledged. Warning ${nextCount} recorded.`
 
+
+
     );
+
+
 
   }, []);
 
 
 
+
+
+
+
   // ============================================================
+
+
 
   // EXAM TIMER
 
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2082,7 +4188,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     if (!exam) {
+
+
+
+
 
 
 
@@ -2090,7 +4204,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     }
+
+
+
+
 
 
 
@@ -2098,7 +4220,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       exam.durationMinutes * 60;
+
+
+
+
 
 
 
@@ -2106,11 +4236,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
       totalSeconds
 
 
 
+
+
+
+
     );
+
+
+
+
 
 
 
@@ -2118,7 +4260,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       totalSeconds;
+
+
+
+
 
 
 
@@ -2126,7 +4276,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       setInterval(() => {
+
+
+
+
 
 
 
@@ -2134,7 +4292,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           if (
+
+
+
+
 
 
 
@@ -2142,7 +4308,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           ) {
+
+
+
+
 
 
 
@@ -2150,7 +4324,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               timer
+
+
+
+
 
 
 
@@ -2158,7 +4340,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             timeLeftRef.current =
+
+
+
+
 
 
 
@@ -2166,7 +4356,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             if (
+
+
+
+
 
 
 
@@ -2174,7 +4372,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             ) {
+
+
+
+
 
 
 
@@ -2182,11 +4388,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 'Time is up! Submitting your exam...'
 
 
 
+
+
+
+
               );
+
+
+
+
 
 
 
@@ -2194,7 +4412,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 warningsRef.current
+
+
+
+
 
 
 
@@ -2202,7 +4428,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             }
+
+
+
+
 
 
 
@@ -2210,7 +4444,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           }
+
+
+
+
 
 
 
@@ -2218,7 +4460,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             previous - 1;
+
+
+
+
 
 
 
@@ -2226,7 +4476,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             nextValue;
+
+
+
+
 
 
 
@@ -2234,7 +4492,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         });
+
+
+
+
 
 
 
@@ -2242,7 +4508,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     return () => {
+
+
+
+
 
 
 
@@ -2250,11 +4524,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         timer
 
 
 
+
+
+
+
       );
+
+
+
+
 
 
 
@@ -2262,7 +4548,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   }, [
+
+
+
+
 
 
 
@@ -2270,7 +4564,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     handleSubmit
+
+
+
+
 
 
 
@@ -2278,7 +4580,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2286,7 +4596,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2294,7 +4612,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     questionId,
+
+
+
+
 
 
 
@@ -2302,7 +4628,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   ) => {
+
+
+
+
 
 
 
@@ -2310,7 +4644,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       const updatedAnswers = {
+
+
+
+
 
 
 
@@ -2318,7 +4660,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         [questionId]:
+
+
+
+
 
 
 
@@ -2326,7 +4676,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       };
+
+
+
+
 
 
 
@@ -2334,7 +4692,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         updatedAnswers;
+
+
+
+
 
 
 
@@ -2342,7 +4708,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     });
+
+
+
+
 
 
 
@@ -2350,7 +4724,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2358,7 +4740,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2366,7 +4756,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     questionId,
+
+
+
+
 
 
 
@@ -2374,7 +4772,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   ) => {
+
+
+
+
 
 
 
@@ -2382,7 +4788,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       const updatedAnswers = {
+
+
+
+
 
 
 
@@ -2390,7 +4804,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         [questionId]:
+
+
+
+
 
 
 
@@ -2398,7 +4820,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       };
+
+
+
+
 
 
 
@@ -2406,7 +4836,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         updatedAnswers;
+
+
+
+
 
 
 
@@ -2414,7 +4852,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     });
+
+
+
+
 
 
 
@@ -2422,7 +4868,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2430,7 +4884,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2438,7 +4900,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     seconds
+
+
+
+
 
 
 
@@ -2446,7 +4916,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     const mins =
+
+
+
+
 
 
 
@@ -2454,7 +4932,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         seconds / 60
+
+
+
+
 
 
 
@@ -2462,7 +4948,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     const secs =
+
+
+
+
 
 
 
@@ -2470,7 +4964,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     return `${mins}:${secs
+
+
+
+
 
 
 
@@ -2478,7 +4980,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       .padStart(2, '0')}`;
+
+
+
+
 
 
 
@@ -2486,7 +4996,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2494,7 +5012,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2502,7 +5028,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     !questions.length
+
+
+
+
 
 
 
@@ -2510,15 +5044,31 @@ function ExamRoom() {
 
 
 
+
+
+
+
     return (
 
+
+
       <div
+
+
 
       className="exam-container"
 
 
 
+
+
+
+
       >
+
+
+
+
 
 
 
@@ -2526,7 +5076,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           style={{
+
+
+
+
 
 
 
@@ -2534,7 +5092,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               'center',
+
+
+
+
 
 
 
@@ -2542,7 +5108,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               '50px',
+
+
+
+
 
 
 
@@ -2550,7 +5124,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               '18px'
+
+
+
+
 
 
 
@@ -2558,7 +5140,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         >
+
+
+
+
 
 
 
@@ -2566,11 +5156,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         </p>
 
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -2578,7 +5180,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   }
+
+
+
+
 
 
 
@@ -2586,7 +5196,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     questions[
+
+
+
+
 
 
 
@@ -2594,7 +5212,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     ];
+
+
+
+
 
 
 
@@ -2602,7 +5228,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     questions.filter(
+
+
+
+
 
 
 
@@ -2610,7 +5244,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         answers[
+
+
+
+
 
 
 
@@ -2618,7 +5260,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         ]
+
+
+
+
 
 
 
@@ -2626,7 +5276,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2634,7 +5292,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
   // ============================================================
+
+
+
+
 
 
 
@@ -2642,7 +5308,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
     <div
+
+
+
+
 
 
 
@@ -2650,257 +5324,513 @@ function ExamRoom() {
 
 
 
+
+
+
+
     >
+
+
+
+
 
 
 
       {tabSwitchActive && (
 
+
+
         <div
+
+
 
           style={{
 
+
+
             position: 'fixed',
+
+
 
             inset: 0,
 
+
+
             zIndex: 99999,
+
+
 
             background: 'rgba(15, 23, 42, 0.72)',
 
+
+
             display: 'flex',
+
+
 
             alignItems: 'center',
 
+
+
             justifyContent: 'center',
+
+
 
             padding: '20px',
 
+
+
             backdropFilter: 'blur(4px)'
+
+
 
           }}
 
+
+
         >
+
+
 
           <div
 
+
+
             style={{
+
+
 
               width: 'min(460px, 100%)',
 
+
+
               background: '#ffffff',
+
+
 
               borderRadius: '18px',
 
+
+
               padding: '28px',
+
+
 
               textAlign: 'center',
 
+
+
               boxShadow: '0 25px 70px rgba(0,0,0,0.28)',
+
+
 
               border: '1px solid #fecaca'
 
+
+
             }}
+
+
 
           >
 
+
+
             <div
+
+
 
               style={{
 
+
+
                 width: '58px',
+
+
 
                 height: '58px',
 
+
+
                 margin: '0 auto 14px',
+
+
 
                 borderRadius: '50%',
 
+
+
                 display: 'flex',
+
+
 
                 alignItems: 'center',
 
+
+
                 justifyContent: 'center',
+
+
 
                 background: '#fef2f2',
 
+
+
                 fontSize: '28px'
+
+
 
               }}
 
+
+
             >
+
+
 
               ⚠️
 
+
+
             </div>
+
+
+
+
 
 
 
             <h2
 
+
+
               style={{
+
+
 
                 margin: '0 0 8px',
 
+
+
                 color: '#991b1b',
+
+
 
                 fontSize: '22px'
 
+
+
               }}
+
+
 
             >
 
+
+
               Examination Tab Switched
+
+
 
             </h2>
 
 
 
+
+
+
+
             <p
+
+
 
               style={{
 
+
+
                 margin: '0 auto 18px',
+
+
 
                 color: '#475569',
 
+
+
                 lineHeight: 1.6,
+
+
 
                 fontSize: '14px',
 
+
+
                 maxWidth: '380px'
+
+
 
               }}
 
+
+
             >
+
+
 
               Please return to the examination immediately. Your exam will
 
+
+
               be submitted automatically if you do not return within the
 
+
+
               remaining time.
+
+
 
             </p>
 
 
 
+
+
+
+
             <div
+
+
 
               style={{
 
+
+
                 fontSize: '46px',
+
+
 
                 lineHeight: 1,
 
+
+
                 fontWeight: 800,
+
+
 
                 color: tabSwitchSeconds <= 10 ? '#dc2626' : '#4f46e5',
 
+
+
                 marginBottom: '18px'
+
+
 
               }}
 
+
+
             >
+
+
 
               {tabSwitchSeconds}s
 
+
+
             </div>
+
+
+
+
 
 
 
             <button
 
+
+
               type="button"
+
+
 
               onClick={acknowledgeTabSwitch}
 
+
+
               style={{
+
+
 
                 width: '100%',
 
+
+
                 border: 'none',
+
+
 
                 borderRadius: '10px',
 
+
+
                 padding: '11px 16px',
+
+
 
                 background: '#4f46e5',
 
+
+
                 color: '#ffffff',
+
+
 
                 fontWeight: 700,
 
+
+
                 cursor: 'pointer',
+
+
 
                 marginBottom: '16px'
 
+
+
               }}
+
+
 
             >
 
+
+
               I'm Back — Continue Exam
+
+
 
             </button>
 
 
 
+
+
+
+
             <div
+
+
 
               style={{
 
+
+
                 height: '8px',
+
+
 
                 background: '#e5e7eb',
 
+
+
                 borderRadius: '999px',
+
+
 
                 overflow: 'hidden'
 
+
+
               }}
+
+
 
             >
 
+
+
               <div
+
+
 
                 style={{
 
+
+
                   width: `${Math.max(0, Math.min(100, (tabSwitchSeconds / 30) * 100))}%`,
+
+
 
                   height: '100%',
 
+
+
                   background: tabSwitchSeconds <= 10 ? '#dc2626' : '#4f46e5',
+
+
 
                   transition: 'width 0.25s linear'
 
+
+
                 }}
 
+
+
               />
+
+
 
             </div>
 
 
 
+
+
+
+
             <p
+
+
 
               style={{
 
+
+
                 margin: '14px 0 0',
+
+
 
                 fontSize: '12px',
 
+
+
                 color: '#64748b'
+
+
 
               }}
 
+
+
             >
+
+
 
               Return to this tab to continue your exam.
 
+
+
             </p>
+
+
 
           </div>
 
+
+
         </div>
+
+
 
       )}
 
@@ -2908,7 +5838,17 @@ function ExamRoom() {
 
 
 
+
+
+
+
+
+
       {/* ======================================================
+
+
+
+
 
 
 
@@ -2916,11 +5856,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
       ====================================================== */}
 
 
 
+
+
+
+
       <div
+
+
+
+
 
 
 
@@ -2928,7 +5880,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       >
+
+
+
+
 
 
 
@@ -2936,11 +5896,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           📝
 
 
 
+
+
+
+
           {' '}
+
+
+
+
 
 
 
@@ -2948,7 +5920,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             'Exam'}
+
+
+
+
 
 
 
@@ -2956,7 +5936,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         <div
+
+
+
+
 
 
 
@@ -2964,7 +5952,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         >
+
+
+
+
 
 
 
@@ -2972,7 +5968,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           {' '}
+
+
+
+
 
 
 
@@ -2980,7 +5984,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             timeLeft
+
+
+
+
 
 
 
@@ -2988,7 +6000,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         </div>
+
+
+
+
 
 
 
@@ -2996,7 +6016,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           <div
+
+
+
+
 
 
 
@@ -3004,7 +6032,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           >
+
+
+
+
 
 
 
@@ -3012,7 +6048,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             {' '}
+
+
+
+
 
 
 
@@ -3020,7 +6064,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           </div>
+
+
+
+
 
 
 
@@ -3028,7 +6080,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         <button
+
+
+
+
 
 
 
@@ -3036,7 +6096,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           onClick={() =>
+
+
+
+
 
 
 
@@ -3044,7 +6112,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               warningsRef.current
+
+
+
+
 
 
 
@@ -3052,7 +6128,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           }
+
+
+
+
 
 
 
@@ -3060,11 +6144,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           disabled={submitted}
 
 
 
+
+
+
+
         >
+
+
+
+
 
 
 
@@ -3072,7 +6168,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             ? 'Submitting...'
+
+
+
+
 
 
 
@@ -3080,11 +6184,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         </button>
 
 
 
+
+
+
+
       </div>
+
+
+
+
 
 
 
@@ -3092,7 +6208,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           CONTENT
+
+
+
+
 
 
 
@@ -3100,7 +6224,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
       <div
+
+
+
+
 
 
 
@@ -3108,11 +6240,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
       >
 
 
 
+
+
+
+
         {/* ====================================================
+
+
+
+
 
 
 
@@ -3120,11 +6264,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         ==================================================== */}
 
 
 
+
+
+
+
         <div
+
+
+
+
 
 
 
@@ -3132,11 +6288,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
         >
 
 
 
+
+
+
+
           <div
+
+
+
+
 
 
 
@@ -3144,7 +6312,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           >
+
+
+
+
 
 
 
@@ -3152,11 +6328,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               Question
 
 
 
+
+
+
+
               {' '}
+
+
+
+
 
 
 
@@ -3164,7 +6352,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               {' '}
+
+
+
+
 
 
 
@@ -3172,11 +6368,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               {' '}
 
 
 
+
+
+
+
               {questions.length}
+
+
+
+
 
 
 
@@ -3184,7 +6392,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             <span
+
+
+
+
 
 
 
@@ -3192,7 +6408,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             >
+
+
+
+
 
 
 
@@ -3200,7 +6424,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               {' '}
+
+
+
+
 
 
 
@@ -3208,11 +6440,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
             </span>
 
 
 
+
+
+
+
           </div>
+
+
+
+
 
 
 
@@ -3220,11 +6464,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
             className="question-text"
 
 
 
+
+
+
+
           >
+
+
+
+
 
 
 
@@ -3232,11 +6488,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           </p>
 
 
 
+
+
+
+
           {/* ==================================================
+
+
+
+
 
 
 
@@ -3244,7 +6512,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           ================================================== */}
+
+
+
+
 
 
 
@@ -3252,11 +6528,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
             'MCQ' ? (
 
 
 
+
+
+
+
             <div
+
+
+
+
 
 
 
@@ -3264,7 +6552,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             >
+
+
+
+
 
 
 
@@ -3272,7 +6568,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 'A',
+
+
+
+
 
 
 
@@ -3280,7 +6584,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 'C',
+
+
+
+
 
 
 
@@ -3288,7 +6600,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               ].map(
+
+
+
+
 
 
 
@@ -3296,7 +6616,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   question[
+
+
+
+
 
 
 
@@ -3304,7 +6632,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   ] && (
+
+
+
+
 
 
 
@@ -3312,7 +6648,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       key={option}
+
+
+
+
 
 
 
@@ -3320,7 +6664,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         option
+
+
+
+
 
 
 
@@ -3328,7 +6680,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           answers[
+
+
+
+
 
 
 
@@ -3336,7 +6696,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           ] === option
+
+
+
+
 
 
 
@@ -3344,11 +6712,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                             : ''
 
 
 
+
+
+
+
                         }
+
+
+
+
 
 
 
@@ -3356,7 +6736,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     >
+
+
+
+
 
 
 
@@ -3364,7 +6752,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         type="radio"
+
+
+
+
 
 
 
@@ -3372,11 +6768,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           `q${question.id}`
 
 
 
+
+
+
+
                         }
+
+
+
+
 
 
 
@@ -3384,7 +6792,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         checked={
+
+
+
+
 
 
 
@@ -3392,7 +6808,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                             question.id
+
+
+
+
 
 
 
@@ -3400,7 +6824,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         }
+
+
+
+
 
 
 
@@ -3408,7 +6840,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           handleAnswerChange(
+
+
+
+
 
 
 
@@ -3416,7 +6856,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                             event.target.value
+
+
+
+
 
 
 
@@ -3424,7 +6872,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         }
+
+
+
+
 
 
 
@@ -3432,7 +6888,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       <span>
+
+
+
+
 
 
 
@@ -3440,7 +6904,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           {option}.
+
+
+
+
 
 
 
@@ -3448,7 +6920,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         {' '}
+
+
+
+
 
 
 
@@ -3456,7 +6936,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           question[
+
+
+
+
 
 
 
@@ -3464,7 +6952,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           ]
+
+
+
+
 
 
 
@@ -3472,7 +6968,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       </span>
+
+
+
+
 
 
 
@@ -3480,7 +6984,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   )
+
+
+
+
 
 
 
@@ -3488,11 +7000,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               )}
 
 
 
+
+
+
+
             </div>
+
+
+
+
 
 
 
@@ -3500,7 +7024,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             /* =================================================
+
+
+
+
 
 
 
@@ -3508,11 +7040,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
             ================================================== */
 
 
 
+
+
+
+
             <div
+
+
+
+
 
 
 
@@ -3520,11 +7064,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
             >
 
 
 
+
+
+
+
               <div
+
+
+
+
 
 
 
@@ -3532,7 +7088,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               >
+
+
+
+
 
 
 
@@ -3540,7 +7104,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   Problem Description:
+
+
+
+
 
 
 
@@ -3548,7 +7120,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 <p>
+
+
+
+
 
 
 
@@ -3556,7 +7136,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     question.problemStatement
+
+
+
+
 
 
 
@@ -3564,7 +7152,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 </p>
+
+
+
+
 
 
 
@@ -3572,7 +7168,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   <div
+
+
+
+
 
 
 
@@ -3580,7 +7184,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   >
+
+
+
+
 
 
 
@@ -3588,7 +7200,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       <strong>
+
+
+
+
 
 
 
@@ -3596,7 +7216,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       </strong>
+
+
+
+
 
 
 
@@ -3604,11 +7232,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     <pre>
 
 
 
+
+
+
+
                       {
+
+
+
+
 
 
 
@@ -3616,11 +7256,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       }
 
 
 
+
+
+
+
                     </pre>
+
+
+
+
 
 
 
@@ -3628,7 +7280,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       <strong>
+
+
+
+
 
 
 
@@ -3636,7 +7296,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       </strong>
+
+
+
+
 
 
 
@@ -3644,7 +7312,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     <pre>
+
+
+
+
 
 
 
@@ -3652,11 +7328,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         question.sampleOutput
 
 
 
+
+
+
+
                       }
+
+
+
+
 
 
 
@@ -3664,7 +7352,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   </div>
+
+
+
+
 
 
 
@@ -3672,7 +7368,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               </div>
+
+
+
+
 
 
 
@@ -3680,7 +7384,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 code={
+
+
+
+
 
 
 
@@ -3688,7 +7400,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     question.id
+
+
+
+
 
 
 
@@ -3696,7 +7416,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 }
+
+
+
+
 
 
 
@@ -3704,11 +7432,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   handleCodeChange(
 
 
 
+
+
+
+
                     question.id,
+
+
+
+
 
 
 
@@ -3716,11 +7456,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   )
 
 
 
+
+
+
+
                 }
+
+
+
+
 
 
 
@@ -3728,7 +7480,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 language={
+
+
+
+
 
 
 
@@ -3736,7 +7496,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   question.topic ||
+
+
+
+
 
 
 
@@ -3744,7 +7512,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 }
+
+
+
+
 
 
 
@@ -3752,7 +7528,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   question.starterCode ||
+
+
+
+
 
 
 
@@ -3760,19 +7544,39 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 }
+
+
 
                 onLanguageChange={(language) =>
 
+
+
                   handleCodingLanguageChange(
+
+
 
                     question.id,
 
+
+
                     language
+
+
 
                   )
 
+
+
                 }
+
+
+
+
 
 
 
@@ -3780,7 +7584,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             </div>
+
+
+
+
 
 
 
@@ -3788,7 +7600,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           {/* ==================================================
+
+
+
+
 
 
 
@@ -3796,11 +7616,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           ================================================== */}
 
 
 
+
+
+
+
           <div
+
+
+
+
 
 
 
@@ -3808,7 +7640,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           >
+
+
+
+
 
 
 
@@ -3816,7 +7656,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               type="button"
+
+
+
+
 
 
 
@@ -3824,11 +7672,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 setCurrentQuestion(
 
 
 
+
+
+
+
                   (previous) =>
+
+
+
+
 
 
 
@@ -3836,7 +7696,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 )
+
+
+
+
 
 
 
@@ -3844,7 +7712,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               disabled={
+
+
+
+
 
 
 
@@ -3852,7 +7728,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               }
+
+
+
+
 
 
 
@@ -3860,7 +7744,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             >
+
+
+
+
 
 
 
@@ -3868,11 +7760,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
             </button>
 
 
 
+
+
+
+
             <div
+
+
+
+
 
 
 
@@ -3880,7 +7784,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             >
+
+
+
+
 
 
 
@@ -3888,7 +7800,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 (
+
+
+
+
 
 
 
@@ -3896,7 +7816,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   index
+
+
+
+
 
 
 
@@ -3904,7 +7832,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   <div
+
+
+
+
 
 
 
@@ -3912,11 +7848,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       questionItem.id
 
 
 
+
+
+
+
                     }
+
+
+
+
 
 
 
@@ -3924,11 +7872,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       question-dot
 
 
 
+
+
+
+
                       ${
+
+
+
+
 
 
 
@@ -3936,7 +7896,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           questionItem.id
+
+
+
+
 
 
 
@@ -3944,7 +7912,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           ? 'answered'
+
+
+
+
 
 
 
@@ -3952,7 +7928,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       }
+
+
+
+
 
 
 
@@ -3960,11 +7944,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         currentQuestion ===
 
 
 
+
+
+
+
                         index
+
+
+
+
 
 
 
@@ -3972,7 +7968,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           : ''
+
+
+
+
 
 
 
@@ -3980,7 +7984,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     `}
+
+
+
+
 
 
 
@@ -3988,7 +8000,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       setCurrentQuestion(
+
+
+
+
 
 
 
@@ -3996,7 +8016,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       )
+
+
+
+
 
 
 
@@ -4004,7 +8032,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   >
+
+
+
+
 
 
 
@@ -4012,11 +8048,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   </div>
 
 
 
+
+
+
+
                 )
+
+
+
+
 
 
 
@@ -4024,7 +8072,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             </div>
+
+
+
+
 
 
 
@@ -4032,7 +8088,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               type="button"
+
+
+
+
 
 
 
@@ -4040,7 +8104,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 setCurrentQuestion(
+
+
+
+
 
 
 
@@ -4048,7 +8120,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     previous + 1
+
+
+
+
 
 
 
@@ -4056,7 +8136,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               }
+
+
+
+
 
 
 
@@ -4064,7 +8152,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 currentQuestion ===
+
+
+
+
 
 
 
@@ -4072,7 +8168,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               }
+
+
+
+
 
 
 
@@ -4080,7 +8184,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             >
+
+
+
+
 
 
 
@@ -4088,11 +8200,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
             </button>
 
 
 
+
+
+
+
           </div>
+
+
+
+
 
 
 
@@ -4100,7 +8224,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               ANSWER SUMMARY
+
+
+
+
 
 
 
@@ -4108,11 +8240,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
           <div
 
 
 
+
+
+
+
             style={{
+
+
+
+
 
 
 
@@ -4120,7 +8264,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 'flex',
+
+
+
+
 
 
 
@@ -4128,11 +8280,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 'space-between',
 
 
 
+
+
+
+
               padding:
+
+
+
+
 
 
 
@@ -4140,7 +8304,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               fontSize:
+
+
+
+
 
 
 
@@ -4148,7 +8320,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             }}
+
+
+
+
 
 
 
@@ -4156,7 +8336,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             <span>
+
+
+
+
 
 
 
@@ -4164,11 +8352,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               {' '}
 
 
 
+
+
+
+
               <strong>
+
+
+
+
 
 
 
@@ -4176,7 +8376,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               </strong>
+
+
+
+
 
 
 
@@ -4184,11 +8392,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               {questions.length}
 
 
 
+
+
+
+
             </span>
+
+
+
+
 
 
 
@@ -4196,7 +8416,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               Remaining:
+
+
+
+
 
 
 
@@ -4204,7 +8432,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               <strong>
+
+
+
+
 
 
 
@@ -4212,7 +8448,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   answeredCount}
+
+
+
+
 
 
 
@@ -4220,7 +8464,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             </span>
+
+
+
+
 
 
 
@@ -4228,7 +8480,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         </div>
+
+
+
+
 
 
 
@@ -4236,7 +8496,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             AI PROCTORING PANEL
+
+
+
+
 
 
 
@@ -4244,7 +8512,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         <div
+
+
+
+
 
 
 
@@ -4252,7 +8528,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
         >
+
+
+
+
 
 
 
@@ -4260,7 +8544,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             style={{
+
+
+
+
 
 
 
@@ -4268,7 +8560,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 'sticky',
+
+
+
+
 
 
 
@@ -4276,7 +8576,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 '20px',
+
+
+
+
 
 
 
@@ -4284,7 +8592,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 'var(--card-bg, #ffffff)',
+
+
+
+
 
 
 
@@ -4292,7 +8608,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 '16px',
+
+
+
+
 
 
 
@@ -4300,7 +8624,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 '15px',
+
+
+
+
 
 
 
@@ -4308,7 +8640,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 '0 8px 25px rgba(0,0,0,0.12)'
+
+
+
+
 
 
 
@@ -4316,7 +8656,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           >
+
+
+
+
 
 
 
@@ -4324,7 +8672,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             <div
+
+
+
+
 
 
 
@@ -4332,11 +8688,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 display:
 
 
 
+
+
+
+
                   'flex',
+
+
+
+
 
 
 
@@ -4344,11 +8712,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   'space-between',
 
 
 
+
+
+
+
                 alignItems:
+
+
+
+
 
 
 
@@ -4356,7 +8736,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 marginBottom:
+
+
+
+
 
 
 
@@ -4364,7 +8752,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               }}
+
+
+
+
 
 
 
@@ -4372,7 +8768,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               <div>
+
+
+
+
 
 
 
@@ -4380,7 +8784,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   style={{
+
+
+
+
 
 
 
@@ -4388,7 +8800,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '11px',
+
+
+
+
 
 
 
@@ -4396,7 +8816,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '800',
+
+
+
+
 
 
 
@@ -4404,11 +8832,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '1px',
 
 
 
+
+
+
+
                     color:
+
+
+
+
 
 
 
@@ -4416,11 +8856,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   }}
 
 
 
+
+
+
+
                 >
+
+
+
+
 
 
 
@@ -4428,7 +8880,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 </div>
+
+
+
+
 
 
 
@@ -4436,11 +8896,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   style={{
 
 
 
+
+
+
+
                     margin:
+
+
+
+
 
 
 
@@ -4448,11 +8920,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   }}
 
 
 
+
+
+
+
                 >
+
+
+
+
 
 
 
@@ -4460,11 +8944,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 </h4>
 
 
 
+
+
+
+
               </div>
+
+
+
+
 
 
 
@@ -4472,7 +8968,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 type="button"
+
+
+
+
 
 
 
@@ -4480,7 +8984,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   setShowCamera(
+
+
+
+
 
 
 
@@ -4488,7 +9000,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       !previous
+
+
+
+
 
 
 
@@ -4496,11 +9016,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 }
 
 
 
+
+
+
+
                 style={{
+
+
+
+
 
 
 
@@ -4508,11 +9040,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '1px solid #d1d5db',
 
 
 
+
+
+
+
                   background:
+
+
+
+
 
 
 
@@ -4520,7 +9064,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   borderRadius:
+
+
+
+
 
 
 
@@ -4528,7 +9080,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   padding:
+
+
+
+
 
 
 
@@ -4536,7 +9096,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   cursor:
+
+
+
+
 
 
 
@@ -4544,11 +9112,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 }}
 
 
 
+
+
+
+
               >
+
+
+
+
 
 
 
@@ -4556,7 +9136,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   ? 'Hide'
+
+
+
+
 
 
 
@@ -4564,11 +9152,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               </button>
 
 
 
+
+
+
+
             </div>
+
+
+
+
 
 
 
@@ -4576,7 +9176,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             {showCamera ? (
+
+
+
+
 
 
 
@@ -4584,7 +9192,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 style={{
+
+
+
+
 
 
 
@@ -4592,7 +9208,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     'relative',
+
+
+
+
 
 
 
@@ -4600,7 +9224,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     'hidden',
+
+
+
+
 
 
 
@@ -4608,11 +9240,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '12px',
 
 
 
+
+
+
+
                   background:
+
+
+
+
 
 
 
@@ -4620,7 +9264,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   aspectRatio:
+
+
+
+
 
 
 
@@ -4628,11 +9280,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 }}
 
 
 
+
+
+
+
               >
+
+
+
+
 
 
 
@@ -4640,7 +9304,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   ref={
+
+
+
+
 
 
 
@@ -4648,7 +9320,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   }
+
+
+
+
 
 
 
@@ -4656,7 +9336,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   muted
+
+
+
+
 
 
 
@@ -4664,11 +9352,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   className="webcam-feed"
 
 
 
+
+
+
+
                   style={{
+
+
+
+
 
 
 
@@ -4676,7 +9376,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '100%',
+
+
+
+
 
 
 
@@ -4684,7 +9392,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '100%',
+
+
+
+
 
 
 
@@ -4692,7 +9408,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       'cover',
+
+
+
+
 
 
 
@@ -4700,7 +9424,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       'block',
+
+
+
+
 
 
 
@@ -4708,7 +9440,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                      * Front/selfie camera effect
+
+
+
+
 
 
 
@@ -4716,7 +9456,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     transform:
+
+
+
+
 
 
 
@@ -4724,7 +9472,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   }}
+
+
+
+
 
 
 
@@ -4732,7 +9488,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 {/* CAMERA STATUS */}
+
+
+
+
 
 
 
@@ -4740,7 +9504,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   style={{
+
+
+
+
 
 
 
@@ -4748,7 +9520,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       'absolute',
+
+
+
+
 
 
 
@@ -4756,7 +9536,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '10px',
+
+
+
+
 
 
 
@@ -4764,7 +9552,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '10px',
+
+
+
+
 
 
 
@@ -4772,7 +9568,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '6px 9px',
+
+
+
+
 
 
 
@@ -4780,7 +9584,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '8px',
+
+
+
+
 
 
 
@@ -4788,11 +9600,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       'rgba(0,0,0,0.70)',
 
 
 
+
+
+
+
                     color:
+
+
+
+
 
 
 
@@ -4800,7 +9624,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     fontSize:
+
+
+
+
 
 
 
@@ -4808,11 +9640,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   }}
 
 
 
+
+
+
+
                 >
+
+
+
+
 
 
 
@@ -4820,7 +9664,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     style={{
+
+
+
+
 
 
 
@@ -4828,7 +9680,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         'inline-block',
+
+
+
+
 
 
 
@@ -4836,7 +9696,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         '7px',
+
+
+
+
 
 
 
@@ -4844,7 +9712,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         '7px',
+
+
+
+
 
 
 
@@ -4852,7 +9728,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         '50%',
+
+
+
+
 
 
 
@@ -4860,7 +9744,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                         cameraStatus ===
+
+
+
+
 
 
 
@@ -4868,7 +9760,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                           ? '#22c55e'
+
+
+
+
 
 
 
@@ -4876,7 +9776,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       marginRight:
+
+
+
+
 
 
 
@@ -4884,7 +9792,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     }}
+
+
+
+
 
 
 
@@ -4892,7 +9808,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   {cameraStatus}
+
+
+
+
 
 
 
@@ -4900,7 +9824,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               </div>
+
+
+
+
 
 
 
@@ -4908,11 +9840,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               <div
 
 
 
+
+
+
+
                 style={{
+
+
+
+
 
 
 
@@ -4920,7 +9864,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '220px',
+
+
+
+
 
 
 
@@ -4928,11 +9880,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '12px',
 
 
 
+
+
+
+
                   background:
+
+
+
+
 
 
 
@@ -4940,7 +9904,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   display:
+
+
+
+
 
 
 
@@ -4948,11 +9920,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   alignItems:
 
 
 
+
+
+
+
                     'center',
+
+
+
+
 
 
 
@@ -4960,7 +9944,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     'center',
+
+
+
+
 
 
 
@@ -4968,11 +9960,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     'column',
 
 
 
+
+
+
+
                   color:
+
+
+
+
 
 
 
@@ -4980,11 +9984,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 }}
 
 
 
+
+
+
+
               >
+
+
+
+
 
 
 
@@ -4992,11 +10008,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   style={{
 
 
 
+
+
+
+
                     fontSize:
+
+
+
+
 
 
 
@@ -5004,11 +10032,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   }}
 
 
 
+
+
+
+
                 >
+
+
+
+
 
 
 
@@ -5016,7 +10056,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 </span>
+
+
+
+
 
 
 
@@ -5024,7 +10072,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   Camera preview hidden
+
+
+
+
 
 
 
@@ -5032,11 +10088,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               </div>
 
 
 
+
+
+
+
             )}
+
+
+
+
 
 
 
@@ -5044,7 +10112,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             <div
+
+
+
+
 
 
 
@@ -5052,11 +10128,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 marginTop:
 
 
 
+
+
+
+
                   '12px',
+
+
+
+
 
 
 
@@ -5064,7 +10152,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   '11px',
+
+
+
+
 
 
 
@@ -5072,7 +10168,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   '11px',
+
+
+
+
 
 
 
@@ -5080,11 +10184,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   'rgba(79,70,229,0.08)',
 
 
 
+
+
+
+
                 display:
+
+
+
+
 
 
 
@@ -5092,7 +10208,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 gap:
+
+
+
+
 
 
 
@@ -5100,7 +10224,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 alignItems:
+
+
+
+
 
 
 
@@ -5108,11 +10240,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               }}
 
 
 
+
+
+
+
             >
+
+
+
+
 
 
 
@@ -5120,11 +10264,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 style={{
 
 
 
+
+
+
+
                   fontSize:
+
+
+
+
 
 
 
@@ -5132,11 +10288,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 }}
 
 
 
+
+
+
+
               >
+
+
+
+
 
 
 
@@ -5144,7 +10312,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               </span>
+
+
+
+
 
 
 
@@ -5152,7 +10328,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 <strong
+
+
+
+
 
 
 
@@ -5160,7 +10344,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     fontSize:
+
+
+
+
 
 
 
@@ -5168,11 +10360,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   }}
 
 
 
+
+
+
+
                 >
+
+
+
+
 
 
 
@@ -5180,7 +10384,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 </strong>
+
+
+
+
 
 
 
@@ -5188,7 +10400,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   style={{
+
+
+
+
 
 
 
@@ -5196,7 +10416,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '3px 0 0',
+
+
+
+
 
 
 
@@ -5204,7 +10432,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '11px',
+
+
+
+
 
 
 
@@ -5212,7 +10448,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                       '#6b7280'
+
+
+
+
 
 
 
@@ -5220,7 +10464,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 >
+
+
+
+
 
 
 
@@ -5228,7 +10480,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 </p>
+
+
+
+
 
 
 
@@ -5236,7 +10496,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             </div>
+
+
+
+
 
 
 
@@ -5244,7 +10512,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             {warnings > 0 && (
+
+
+
+
 
 
 
@@ -5252,7 +10528,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 style={{
+
+
+
+
 
 
 
@@ -5260,7 +10544,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '10px',
+
+
+
+
 
 
 
@@ -5268,7 +10560,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '10px',
+
+
+
+
 
 
 
@@ -5276,7 +10576,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '10px',
+
+
+
+
 
 
 
@@ -5284,7 +10592,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     'rgba(245,158,11,0.12)',
+
+
+
+
 
 
 
@@ -5292,7 +10608,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '#b45309',
+
+
+
+
 
 
 
@@ -5300,7 +10624,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '12px',
+
+
+
+
 
 
 
@@ -5308,7 +10640,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                     '700'
+
+
+
+
 
 
 
@@ -5316,7 +10656,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               >
+
+
+
+
 
 
 
@@ -5324,7 +10672,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 {' '}
+
+
+
+
 
 
 
@@ -5332,7 +10688,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               </div>
+
+
+
+
 
 
 
@@ -5340,7 +10704,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             {/* NOTICE */}
+
+
+
+
 
 
 
@@ -5348,11 +10720,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
               style={{
 
 
 
+
+
+
+
                 marginTop:
+
+
+
+
 
 
 
@@ -5360,11 +10744,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 fontSize:
 
 
 
+
+
+
+
                   '11px',
+
+
+
+
 
 
 
@@ -5372,7 +10768,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   '1.5',
+
+
+
+
 
 
 
@@ -5380,7 +10784,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   '#6b7280'
+
+
+
+
 
 
 
@@ -5388,7 +10800,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             >
+
+
+
+
 
 
 
@@ -5396,7 +10816,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
               monitored for academic
+
+
+
+
 
 
 
@@ -5404,7 +10832,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             </p>
+
+
+
+
 
 
 
@@ -5412,7 +10848,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
             <div
+
+
+
+
 
 
 
@@ -5420,7 +10864,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 borderTop:
+
+
+
+
 
 
 
@@ -5428,11 +10880,23 @@ function ExamRoom() {
 
 
 
+
+
+
+
                 marginTop:
 
 
 
+
+
+
+
                   '10px',
+
+
+
+
 
 
 
@@ -5440,7 +10904,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   '10px',
+
+
+
+
 
 
 
@@ -5448,7 +10920,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   'grid',
+
+
+
+
 
 
 
@@ -5456,7 +10936,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   '5px',
+
+
+
+
 
 
 
@@ -5464,7 +10952,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   '11px',
+
+
+
+
 
 
 
@@ -5472,7 +10968,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
                   '#6b7280'
+
+
+
+
 
 
 
@@ -5480,47 +10984,95 @@ function ExamRoom() {
 
 
 
+
+
+
+
             >
 
 
 
+
+
+
+
               <span>
+
+
 
                 ✓ Face presence detection
 
+
+
               </span>
 
 
 
+
+
+
+
               <span>
+
+
 
                 ✓ Multiple-face detection
 
+
+
               </span>
 
 
 
+
+
+
+
               <span>
+
+
 
                 ✓ Electronic-device detection
 
+
+
               </span>
 
 
 
+
+
+
+
               <span>
+
+
 
                 ✓ Tab-switch detection with 30-second grace period
 
+
+
               </span>
+
+
+
+
 
 
 
               <span>
 
+
+
                 ✓ Normal head and hand movement allowed
 
+
+
               </span>
+
+
+
+
 
 
 
@@ -5528,7 +11080,15 @@ function ExamRoom() {
 
 
 
+
+
+
+
           </div>
+
+
+
+
 
 
 
@@ -5536,13 +11096,27 @@ function ExamRoom() {
 
 
 
-      </div>
+
+
+
 
       </div>
+
+
+
+      </div>
+
+
 
   );
 
+
+
 }
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import axios from 'axios';
 import './Students.css';
 
@@ -10,15 +10,14 @@ function Students({ onBack }) {
 
   const token = localStorage.getItem('token');
 
-  const headers = {
-    Authorization: `Bearer ${token}`
-  };
+  const headers = useMemo(
+    () => ({
+      Authorization: `Bearer ${token}`
+    }),
+    [token]
+  );
 
-  useEffect(() => {
-    loadStudents();
-  }, []);
-
-  const loadStudents = async () => {
+  const loadStudents = useCallback(async () => {
     try {
       setLoading(true);
 
@@ -27,9 +26,7 @@ function Students({ onBack }) {
         { headers }
       );
 
-      setStudents(
-        Array.isArray(response.data) ? response.data : []
-      );
+      setStudents(Array.isArray(response.data) ? response.data : []);
     } catch (error) {
       console.error('Error loading students:', error);
 
@@ -40,7 +37,11 @@ function Students({ onBack }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, [headers]);
+
+  useEffect(() => {
+    loadStudents();
+  }, [loadStudents]);
 
   const departments = useMemo(() => {
     return [
@@ -182,9 +183,7 @@ function Students({ onBack }) {
 
         <select
           value={departmentFilter}
-          onChange={(event) =>
-            setDepartmentFilter(event.target.value)
-          }
+          onChange={(event) => setDepartmentFilter(event.target.value)}
         >
           <option value="ALL">All Departments</option>
 

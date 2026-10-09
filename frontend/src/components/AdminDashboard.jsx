@@ -8,8 +8,6 @@ import './AdminDashboard.css';
 
 import ThemeToggle from './ThemeToggle';
 
-import Leaderboard from './Leaderboard';
-
 import Results from './Results';
 
 import ManageExams from './ManageExams';
@@ -1207,34 +1205,6 @@ function AdminDashboard() {
     }
 
 
-
-  };
-
-
-
-  const getSectionName = (section) => {
-
-    const names = {
-
-      students: 'Students',
-
-      results: 'Results',
-
-      'question-bank': 'Question Bank',
-
-      'ai-generator': 'AI Question Generator',
-
-      proctoring: 'AI Proctoring',
-
-      reports: 'Reports',
-
-      settings: 'Settings'
-
-    };
-
-
-
-    return names[section] || 'This';
 
   };
 

@@ -1,16 +1,9 @@
+
 import React, { useState } from 'react';
-
-import {
-  useNavigate,
-  Link,
-  useLocation
-} from 'react-router-dom';
-
+import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
 
-
 function Login({ adminMode = false }) {
-
   const [formData, setFormData] = useState({
     username: '',
     password: ''
@@ -20,32 +13,20 @@ function Login({ adminMode = false }) {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
-  const location = useLocation();
 
-
-  // ============================================================
   // LOGIN
-  // ============================================================
-
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     setError('');
     setLoading(true);
 
     try {
-
       const loginUrl = adminMode
         ? 'http://localhost:8080/api/auth/admin/login'
         : 'http://localhost:8080/api/auth/login';
 
-
-      const response = await axios.post(
-        loginUrl,
-        formData
-      );
-
+      const response = await axios.post(loginUrl, formData);
 
       const {
         token,
@@ -57,39 +38,22 @@ function Login({ adminMode = false }) {
         department
       } = response.data;
 
-
-      // ========================================================
       // SECURITY CHECK
-      // ========================================================
-
       if (adminMode && role !== 'ADMIN') {
-
         setError(
           'This account does not have administrator access.'
         );
-
-        setLoading(false);
-
         return;
       }
 
-
       if (!adminMode && role !== 'STUDENT') {
-
         setError(
           'Please use the administrator login for this account.'
         );
-
-        setLoading(false);
-
         return;
       }
 
-
-      // ========================================================
       // SAVE USER SESSION
-      // ========================================================
-
       localStorage.setItem('token', token);
       localStorage.setItem('role', role);
       localStorage.setItem('username', username);
@@ -98,74 +62,41 @@ function Login({ adminMode = false }) {
       localStorage.setItem('email', email || '');
       localStorage.setItem('department', department || '');
 
-
-      // ========================================================
       // REDIRECT
-      // ========================================================
-
       if (role === 'ADMIN') {
-
         navigate('/admin/dashboard');
-
       } else if (role === 'STUDENT') {
-
         navigate('/student/dashboard');
-
       } else {
-
         setError(
           'Unknown account role. Please contact administrator.'
         );
       }
-
-
     } catch (error) {
-
       setError(
         error.response?.data?.error ||
         'Login failed. Please check your username and password.'
       );
-
     } finally {
-
       setLoading(false);
     }
   };
 
-
-  // ============================================================
   // SWITCH LOGIN MODE
-  // ============================================================
-
   const switchMode = () => {
-
     if (adminMode) {
-
       navigate('/login');
-
     } else {
-
       navigate('/admin/login');
     }
   };
 
-
   return (
-
     <div className="auth-container">
-
       <div className="auth-box">
-
-        {/* ======================================================
-            TITLE
-        ====================================================== */}
-
         <h2>
-          {adminMode
-            ? '🛡️ Admin Portal'
-            : '🎓 Exam Portal'}
+          {adminMode ? '🛡️ Admin Portal' : '🎓 Exam Portal'}
         </h2>
-
 
         <p
           style={{
@@ -173,33 +104,17 @@ function Login({ adminMode = false }) {
             marginBottom: '25px'
           }}
         >
-          {adminMode
-            ? 'Administrator Login'
-            : 'Student Login'}
+          {adminMode ? 'Administrator Login' : 'Student Login'}
         </p>
 
-
-        {/* ======================================================
-            ERROR
-        ====================================================== */}
-
         {error && (
-
           <div className="error-message">
             {error}
           </div>
-
         )}
 
-
-        {/* ======================================================
-            LOGIN FORM
-        ====================================================== */}
-
         <form onSubmit={handleSubmit}>
-
           <div className="form-group">
-
             <input
               type="text"
               placeholder="Username"
@@ -212,12 +127,9 @@ function Login({ adminMode = false }) {
               }
               required
             />
-
           </div>
 
-
           <div className="form-group">
-
             <input
               type="password"
               placeholder="Password"
@@ -230,74 +142,43 @@ function Login({ adminMode = false }) {
               }
               required
             />
-
           </div>
-
 
           <button
             type="submit"
             className="btn-primary"
             disabled={loading}
           >
-
             {loading
               ? 'Logging in...'
               : adminMode
                 ? 'Admin Login'
                 : 'Student Login'}
-
           </button>
-
         </form>
 
-
-        {/* ======================================================
-            STUDENT REGISTRATION
-        ====================================================== */}
-
         {!adminMode && (
-
           <p className="toggle-link">
-
             Don't have a student account?{' '}
-
             <Link to="/register">
               Register here
             </Link>
-
           </p>
-
         )}
 
-
-        {/* ======================================================
-            ADMIN REGISTRATION
-        ====================================================== */}
-
         {adminMode && (
-
           <p className="toggle-link">
-
             Need to create an admin account?{' '}
-
             <Link to="/admin/register">
               Admin Registration
             </Link>
-
           </p>
-
         )}
-
-
-        {/* ======================================================
-            SWITCH LOGIN
-        ====================================================== */}
 
         <p
           className="toggle-link"
           style={{ marginTop: '15px' }}
         >
-
           {adminMode
             ? 'Are you a student? '
             : 'Administrator? '}
@@ -314,17 +195,10 @@ function Login({ adminMode = false }) {
               padding: 0
             }}
           >
-
-            {adminMode
-              ? 'Student Login'
-              : 'Admin Login'}
-
+            {adminMode ? 'Student Login' : 'Admin Login'}
           </button>
-
         </p>
-
       </div>
-
     </div>
   );
 }
