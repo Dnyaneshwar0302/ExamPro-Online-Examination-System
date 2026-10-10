@@ -1,15 +1,11 @@
 import React, { useState } from 'react';
-
-import {
-  Link,
-  useNavigate
-} from 'react-router-dom';
-
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
 function AdminRegister() {
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -26,43 +22,34 @@ function AdminRegister() {
   const [success, setSuccess] = useState('');
   const [loading, setLoading] = useState(false);
 
-
   const handleChange = (e) => {
-
     setFormData({
       ...formData,
       [e.target.name]: e.target.value
     });
   };
 
-
   const handleSubmit = async (e) => {
-
     e.preventDefault();
 
     setError('');
     setSuccess('');
-
 
     if (formData.password !== formData.confirmPassword) {
       setError('Passwords do not match.');
       return;
     }
 
-
     if (formData.password.length < 6) {
       setError('Password must contain at least 6 characters.');
       return;
     }
 
-
     setLoading(true);
 
-
     try {
-
       await axios.post(
-        'http://localhost:8080/api/auth/admin/register',
+        `${API_BASE_URL}/api/auth/admin/register`,
         {
           fullName: formData.fullName,
           username: formData.username,
@@ -73,35 +60,26 @@ function AdminRegister() {
         }
       );
 
-
       setSuccess(
         'Admin account created successfully. Redirecting to Admin Login...'
       );
-
 
       setTimeout(() => {
         navigate('/admin/login');
       }, 1500);
 
-
     } catch (error) {
-
       setError(
         error.response?.data?.error ||
         'Admin registration failed. Please try again.'
       );
-
     } finally {
-
       setLoading(false);
     }
   };
 
-
   return (
-
     <div className="auth-container">
-
       <div className="auth-box">
 
         <h2>🛡️ Admin Registration</h2>
@@ -115,13 +93,11 @@ function AdminRegister() {
           Create an authorized administrator account
         </p>
 
-
         {error && (
           <div className="error-message">
             {error}
           </div>
         )}
-
 
         {success && (
           <div
@@ -137,7 +113,6 @@ function AdminRegister() {
           </div>
         )}
 
-
         <form onSubmit={handleSubmit}>
 
           <div className="form-group">
@@ -151,7 +126,6 @@ function AdminRegister() {
             />
           </div>
 
-
           <div className="form-group">
             <input
               type="text"
@@ -162,7 +136,6 @@ function AdminRegister() {
               required
             />
           </div>
-
 
           <div className="form-group">
             <input
@@ -175,7 +148,6 @@ function AdminRegister() {
             />
           </div>
 
-
           <div className="form-group">
             <input
               type="text"
@@ -185,7 +157,6 @@ function AdminRegister() {
               onChange={handleChange}
             />
           </div>
-
 
           <div className="form-group">
             <input
@@ -198,7 +169,6 @@ function AdminRegister() {
             />
           </div>
 
-
           <div className="form-group">
             <input
               type="password"
@@ -210,7 +180,6 @@ function AdminRegister() {
             />
           </div>
 
-
           <div className="form-group">
             <input
               type="password"
@@ -221,7 +190,6 @@ function AdminRegister() {
               required
             />
           </div>
-
 
           <button
             type="submit"
@@ -235,30 +203,21 @@ function AdminRegister() {
 
         </form>
 
-
         <p className="toggle-link">
-
           Already an admin?{' '}
-
           <Link to="/admin/login">
             Admin Login
           </Link>
-
         </p>
 
-
         <p className="toggle-link">
-
           Student?{' '}
-
           <Link to="/register">
             Student Registration
           </Link>
-
         </p>
 
       </div>
-
     </div>
   );
 }

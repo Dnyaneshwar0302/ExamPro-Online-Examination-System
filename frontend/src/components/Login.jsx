@@ -1,7 +1,9 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import axios from 'axios';
+
+const BACKEND_URL =
+  process.env.REACT_APP_API_URL || 'http://localhost:8080';
 
 function Login({ adminMode = false }) {
   const [formData, setFormData] = useState({
@@ -23,8 +25,8 @@ function Login({ adminMode = false }) {
 
     try {
       const loginUrl = adminMode
-        ? 'http://localhost:8080/api/auth/admin/login'
-        : 'http://localhost:8080/api/auth/login';
+        ? `${BACKEND_URL}/api/auth/admin/login`
+        : `${BACKEND_URL}/api/auth/login`;
 
       const response = await axios.post(loginUrl, formData);
 
