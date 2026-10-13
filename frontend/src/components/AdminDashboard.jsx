@@ -20,6 +20,8 @@ import AIQuestionGenerator from './AIQuestionGenerator';
 
 
 
+const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8080';
+
 function AdminDashboard() {
 
   const navigate = useNavigate();
@@ -211,7 +213,7 @@ function AdminDashboard() {
 
       const response = await axios.get(
 
-        'http://localhost:8080/api/admin/students',
+        `${API_BASE_URL}/api/admin/students`,
 
         {
 
@@ -259,7 +261,7 @@ function AdminDashboard() {
 
       const response = await axios.get(
 
-        'http://localhost:8080/api/admin/exams',
+        `${API_BASE_URL}/api/admin/exams`,
 
         {
 
@@ -319,7 +321,7 @@ function AdminDashboard() {
 
       const response = await axios.get(
 
-        `http://localhost:8080/api/leaderboard/${examId}`,
+        `${API_BASE_URL}/api/leaderboard/${examId}`,
 
         {
 
@@ -432,7 +434,7 @@ function AdminDashboard() {
 
       const token = localStorage.getItem('token');
       const response = await axios.get(
-        `http://localhost:8080/api/leaderboard/${examId}`,
+        `${API_BASE_URL}/api/leaderboard/${examId}`,
         {
           headers: {
             Authorization: `Bearer ${token}`
@@ -1029,7 +1031,7 @@ function AdminDashboard() {
 
       await axios.post(
 
-        'http://localhost:8080/api/admin/exams',
+        `${API_BASE_URL}/api/admin/exams`,
 
         examData,
 
@@ -3807,7 +3809,7 @@ function AdminDashboard() {
                         <div className="exampro-settings-card">
                           <div className="exampro-settings-card-title">Application services</div>
                           <div className="exampro-settings-row"><div className="exampro-settings-row-copy"><strong>React administration frontend</strong><span>Current administrator interface running in the browser.</span></div><span className="exampro-settings-status"><span className="exampro-settings-status-dot" /> Running</span></div>
-                          <div className="exampro-settings-row"><div className="exampro-settings-row-copy"><strong>Spring Boot backend</strong><span>Primary ExamPro REST API used by administration features.</span></div><span style={{ color: '#64748b', fontSize: '12px' }}>http://localhost:8080</span></div>
+                          <div className="exampro-settings-row"><div className="exampro-settings-row-copy"><strong>Spring Boot backend</strong><span>Primary ExamPro REST API used by administration features.</span></div><span style={{ color: '#64748b', fontSize: '12px' }}>{API_BASE_URL}</span></div>
                           <div className="exampro-settings-row"><div className="exampro-settings-row-copy"><strong>AI / Flask backend</strong><span>Question generation, proctoring and AI evaluation service.</span></div><span style={{ color: '#64748b', fontSize: '12px' }}>http://localhost:5000</span></div>
                         </div>
                         <div className="exampro-settings-card">
