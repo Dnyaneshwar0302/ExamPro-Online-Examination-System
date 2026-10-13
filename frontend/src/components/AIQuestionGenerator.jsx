@@ -2,7 +2,7 @@ import React, { useMemo, useState } from 'react';
 import axios from 'axios';
 import './AIQuestionGenerator.css';
 
-const AI_URL = 'http://localhost:5000/generate_questions';
+const AI_URL = 'https://scintillating-tranquility-production-1d82.up.railway.app/generate_questions';
 
 const MCQ_TOPICS = [
   'Aptitude',
